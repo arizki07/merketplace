@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Basic - Pages | Vuexy - Bootstrap Admin Template</title>
+    <title>Login | MarketPlace</title>
 
     <meta name="description" content="" />
 
@@ -26,7 +26,6 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/demo.css" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -40,6 +39,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/pages/page-auth.css" />
     <!-- Helpers -->
     <script src="<?= base_url() ?>assets/vendor/js/helpers.js"></script>
+
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
@@ -75,10 +76,11 @@
                         <h4 class="mb-1 pt-2">Welcome to Vuexy! 👋</h4>
                         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="<?php echo base_url('login') ?>" method="POST">
+
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email or Username</label>
-                                <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
@@ -99,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit" id="loginBtn">Sign in</button>
                             </div>
                         </form>
 
@@ -109,24 +111,6 @@
                                 <span>Create an account</span>
                             </a>
                         </p>
-
-                        <div class="divider my-4">
-                            <div class="divider-text">or</div>
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                                <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-                            </a>
-
-                            <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-                                <i class="tf-icons fa-brands fa-google fs-5"></i>
-                            </a>
-
-                            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                                <i class="tf-icons fa-brands fa-twitter fs-5"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
                 <!-- /Register -->
@@ -161,6 +145,66 @@
 
     <!-- Page JS -->
     <script src="<?= base_url() ?>assets/js/pages-auth.js"></script>
+
+    <script src="<?= base_url() ?>assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+    <script src="<?= base_url() ?>assets/js/extended-ui-sweetalert2.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the login button element
+            var loginBtn = document.getElementById('loginBtn');
+
+            // Add a click event listener to the login button
+            loginBtn.addEventListener('click', function() {
+                // Validate email and password
+                var emailInput = document.getElementById('email');
+                var passwordInput = document.getElementById('password');
+
+                if (!emailInput.value.trim() || !passwordInput.value.trim()) {
+                    // Display a warning message if email or password is empty
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Incomplete Form!',
+                        text: 'Please enter both email/username and password.',
+                        customClass: {
+                            confirmButton: 'btn btn-warning'
+                        }
+                    });
+                    return; // Stop further execution
+                }
+
+                // Simulating a successful login (replace with your actual login logic)
+                var correctEmail = 'correct@email.com';
+                var correctPassword = 'correctpassword';
+
+                console.log('Input Email:', emailInput.value.trim());
+                console.log('Input Password:', passwordInput.value.trim());
+
+                // Check if both email and password are correct
+                if (emailInput.value.trim() === correctEmail && passwordInput.value.trim() === correctPassword) {
+                    // Successful login
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Successful!',
+                        text: 'You are now logged in.',
+                        customClass: {
+                            confirmButton: 'btn btn-success'
+                        }
+                    });
+                } else {
+                    // Incorrect email or password
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed!',
+                        text: 'Incorrect email or password.',
+                        customClass: {
+                            confirmButton: 'btn btn-danger'
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

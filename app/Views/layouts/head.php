@@ -2,7 +2,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Vuexy - Bootstrap Admin Template</title>
+    <title>Marketplace | <?= $title ?></title>
 
     <meta name="description" content="" />
 
@@ -22,7 +22,6 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/demo.css" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -43,4 +42,5 @@
 
     <link href="<?= base_url() ?>assets/datatables/datatables.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/libs/sweetalert2/sweetalert2.css" />
 </head>

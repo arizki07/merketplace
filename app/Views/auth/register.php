@@ -26,7 +26,6 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/demo.css" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -40,6 +39,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/pages/page-auth.css" />
     <!-- Helpers -->
     <script src="<?= base_url() ?>assets/vendor/js/helpers.js"></script>
+
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
@@ -75,7 +76,7 @@
                         <h4 class="mb-1 pt-2">Adventure starts here 🚀</h4>
                         <p class="mb-4">Make your app management easy and fun!</p>
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="<?= base_url('register') ?>" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nama Lengkap</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
@@ -94,14 +95,15 @@
                             <div class="mb-3">
                                 <small class="text-light fw-semibold d-block">Role</small>
                                 <div class="form-check form-check-inline mt-3">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Pengguna Jasa" />
+                                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Pengguna Jasa" />
                                     <label class="form-check-label" for="inlineRadio1">Pengguna Jasa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Penyedia Jasa" />
+                                    <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Penyedia Jasa" />
                                     <label class="form-check-label" for="inlineRadio2">Penyedia Jasa</label>
                                 </div>
-                                <button class="btn btn-primary d-grid w-100 mt-4">Sign up</button>
+                            </div>
+                            <button id="signupButton" class="btn btn-primary d-grid w-100 mt-4">Sign up</button>
                         </form>
 
                         <p class="text-center">
@@ -110,24 +112,6 @@
                                 <span>Sign in instead</span>
                             </a>
                         </p>
-
-                        <div class="divider my-4">
-                            <div class="divider-text">or</div>
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                                <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-                            </a>
-
-                            <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-                                <i class="tf-icons fa-brands fa-google fs-5"></i>
-                            </a>
-
-                            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                                <i class="tf-icons fa-brands fa-twitter fs-5"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
                 <!-- Register Card -->
@@ -162,6 +146,25 @@
 
     <!-- Page JS -->
     <script src="<?= base_url() ?>assets/js/pages-auth.js"></script>
+
+    <script src="<?= base_url() ?>assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+    <script src="<?= base_url() ?>assets/js/extended-ui-sweetalert2.js"></script>
+
+    <!-- Add this to your auth/register view file -->
+    <script>
+        document.getElementById('signupButton').addEventListener('click', function() {
+            // You may want to perform form validation here before showing the alert
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Registration Successful!',
+                text: 'Registrasi berhasil. Akun Anda akan diverifikasi oleh admin sebelum dapat digunakan.'
+            }).then(function() {
+                window.location.href = '/login'; // Redirect to the login page
+            });
+        });
+    </script>
+
 </body>
 
 </html>
