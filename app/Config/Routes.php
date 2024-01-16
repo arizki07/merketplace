@@ -31,7 +31,10 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     //Biodata
     $routes->get('penyedia-jasa', 'BiodataController::penyedia');
+
+    //pengguna
     $routes->get('pengguna-jasa', 'BiodataController::pengguna');
+    $routes->get('add-pengguna', 'BiodataController::add');
 });
 
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {

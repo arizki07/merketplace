@@ -24,4 +24,13 @@ class BiodataController extends BaseController
         ];
         return view('pages/admin/biodata/pengguna', $data);
     }
+
+    public function add()
+    {
+        $data = [
+            'title' => 'Add-Pengguna',
+            'active' => 'pengguna',
+        ];
+        return view('pages/admin/biodata/crud/add-pengguna', $data);
+    }
 }

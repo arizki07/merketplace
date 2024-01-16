@@ -46,7 +46,7 @@ class CreateBiodataTable extends Migration
         ]);
 
         $this->forge->addKey('id_biodata', true);
-        $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
         $this->forge->createTable('tb_biodata');
     }
 

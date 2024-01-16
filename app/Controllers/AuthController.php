@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\AdminModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class AuthController extends BaseController
@@ -18,19 +19,32 @@ class AuthController extends BaseController
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
+        $adminModel = new AdminModel();
         $userModel = new UserModel();
-        $user = $userModel->getUserByEmail($email);
 
-        if ($user && password_verify($password, $user['password'])) {
-            if ($user['status'] == 1) {
+        // Cek apakah pengguna ada di tabel admin
+        $admin = $adminModel->getUserByEmail($email);
+
+        // Jika pengguna tidak ada di tabel admin, cek di tabel user
+        if (!$admin) {
+            $user = $userModel->getUserByEmail($email);
+        }
+
+        // Pilih pengguna berdasarkan tabel
+        $selectedUser = $admin ? $admin : $user;
+
+        if ($selectedUser && password_verify($password, $selectedUser['password'])) {
+            if ($selectedUser['status'] == 1) {
                 // Hanya izinkan login jika pengguna sudah terverifikasi
                 $session = \Config\Services::session();
                 $session->set('auth', true);
-                $session->set('email', $user['email']);
-                $session->set('role', $user['role']);
-                $session->set('username', $user['username']);
+                $session->set('email', $selectedUser['email']);
+                $session->set('role', $selectedUser['role']);
+                $session->set('username', $admin ? $selectedUser['username'] : $selectedUser['username']);
 
-                switch ($user['role']) {
+                $session->setFlashdata('success', 'Login successful. Welcome, ' . $selectedUser['username'] . '!');
+
+                switch ($selectedUser['role']) {
                     case 'Admin':
                         return redirect()->to('admin/dashboard');
                         break;
@@ -85,7 +99,7 @@ class AuthController extends BaseController
                 // Tambahkan logika verifikasi atau kirim email verifikasi di sini
 
                 // Redirect atau tampilkan pesan sukses
-                return redirect()->to('/login')->with('success', 'Registrasi berhasil, silakan login.');
+                return redirect()->to('/login')->with('success', 'Akun berhasil dibuat. Mohon menunggu verifikasi admin.');
             } else {
                 // Jika validasi gagal, tampilkan pesan error
                 return view('auth/register', ['validation' => $validation]);

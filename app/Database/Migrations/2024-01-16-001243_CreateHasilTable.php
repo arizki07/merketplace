@@ -33,8 +33,8 @@ class CreateHasilTable extends Migration
         ]);
 
         $this->forge->addKey('id_hasil', true);
-        $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('pemesanan_id', 'tb_pemesanan', 'id_pemesanan', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('pemesanan_id', 'tb_pemesanan', 'id_pemesanan', 'CASCADE', 'CASCADE');
         $this->forge->createTable('tb_hasil');
     }
 

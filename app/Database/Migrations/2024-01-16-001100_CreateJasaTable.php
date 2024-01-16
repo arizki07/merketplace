@@ -55,8 +55,8 @@ class CreateJasaTable extends Migration
         ]);
 
         $this->forge->addKey('id_jasa', true);
-        $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('biodata_id', 'tb_biodata', 'id_biodata', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('biodata_id', 'tb_biodata', 'id_biodata', 'CASCADE', 'CASCADE');
         $this->forge->createTable('tb_jasa');
     }
 

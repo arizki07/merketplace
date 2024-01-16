@@ -15,7 +15,7 @@ class CreateAdminTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'nama_lengkap' => [
+            'username' => [
                 'type' => 'VARCHAR',
                 'constraint' => 150,
             ],
@@ -31,8 +31,7 @@ class CreateAdminTable extends Migration
                 'constraint' => 20,
             ],
             'status' => [
-                'type' => 'VARCHAR',
-                'constraint' => 20,
+                'type' => 'INT', 'constraint' => 1, 'default' => 0
             ],
             'alamat' => [
                 'type' => 'TEXT',
@@ -40,6 +39,10 @@ class CreateAdminTable extends Migration
             'password' => [
                 'type' => 'VARCHAR',
                 'constraint' => 150,
+            ],
+            'role' => [
+                'type' => 'ENUM',
+                'constraint' => ['Admin'],
             ],
             'foto_profil' => [
                 'type' => 'VARCHAR',

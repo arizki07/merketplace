@@ -75,7 +75,23 @@
                         <!-- /Logo -->
                         <h4 class="mb-1 pt-2">Welcome to Vuexy! 👋</h4>
                         <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <?php if (isset($validation)) : ?>
+                            <div class="alert alert-danger">
+                                <?= $validation->listErrors() ?>
+                            </div>
+                        <?php endif; ?>
 
+                        <?php if (session()->getFlashdata('error')) : ?>
+                            <div class="alert alert-danger">
+                                <?= session()->getFlashdata('error') ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (session()->getFlashdata('success')) : ?>
+                            <div class="alert alert-success">
+                                <?= session()->getFlashdata('success') ?>
+                            </div>
+                        <?php endif; ?>
                         <form id="formAuthentication" class="mb-3" action="<?php echo base_url('login') ?>" method="POST">
 
                             <div class="mb-3">
@@ -101,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit" id="loginBtn">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                             </div>
                         </form>
 
@@ -148,63 +164,6 @@
 
     <script src="<?= base_url() ?>assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
     <script src="<?= base_url() ?>assets/js/extended-ui-sweetalert2.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the login button element
-            var loginBtn = document.getElementById('loginBtn');
-
-            // Add a click event listener to the login button
-            loginBtn.addEventListener('click', function() {
-                // Validate email and password
-                var emailInput = document.getElementById('email');
-                var passwordInput = document.getElementById('password');
-
-                if (!emailInput.value.trim() || !passwordInput.value.trim()) {
-                    // Display a warning message if email or password is empty
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Incomplete Form!',
-                        text: 'Please enter both email/username and password.',
-                        customClass: {
-                            confirmButton: 'btn btn-warning'
-                        }
-                    });
-                    return; // Stop further execution
-                }
-
-                // Simulating a successful login (replace with your actual login logic)
-                var correctEmail = 'correct@email.com';
-                var correctPassword = 'correctpassword';
-
-                console.log('Input Email:', emailInput.value.trim());
-                console.log('Input Password:', passwordInput.value.trim());
-
-                // Check if both email and password are correct
-                if (emailInput.value.trim() === correctEmail && passwordInput.value.trim() === correctPassword) {
-                    // Successful login
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Login Successful!',
-                        text: 'You are now logged in.',
-                        customClass: {
-                            confirmButton: 'btn btn-success'
-                        }
-                    });
-                } else {
-                    // Incorrect email or password
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed!',
-                        text: 'Incorrect email or password.',
-                        customClass: {
-                            confirmButton: 'btn btn-danger'
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

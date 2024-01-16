@@ -44,9 +44,9 @@ class CreatePemesananTable extends Migration
         ]);
 
         $this->forge->addKey('id_pemesanan', true);
-        $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('biodata_id', 'tb_biodata', 'id_biodata', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('jasa_id', 'tb_jasa', 'id_jasa', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('biodata_id', 'tb_biodata', 'id_biodata', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('jasa_id', 'tb_jasa', 'id_jasa', 'CASCADE', 'CASCADE');
         $this->forge->createTable('tb_pemesanan');
     }
 

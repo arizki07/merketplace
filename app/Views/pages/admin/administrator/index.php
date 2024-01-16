@@ -2,14 +2,14 @@
 <?= $this->section('content') ?>
 
 <div class="container-xxl flex-grow-1 container">
-    <h4 class="fw-bold py-3 mb-4 mt-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4>
+    <h4 class="fw-bold py-3 mb-4 mt-4"><span class="text-muted fw-light">DataTables /</span> Validasi Admin</h4>
 
     <!-- DataTable with Buttons -->
     <div class="card">
         <div class="card-body">
             <div class="card-header">
                 <a type="button" class="btn btn-primary" style="float: right;" href=""><i class="fas fa-plus-circle me-2" style="font-size: 18px;"></i> Tambah Data User</a>
-                <h2>Data Users</h2>
+                <h4>Data Validasi Admin</h4>
             </div>
             <div class="card-datatable table-responsive pt-0">
                 <table id="example" class="table" style="width:100%">
@@ -19,7 +19,7 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Password</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <div class="card-header">
-                <a type="button" class="btn btn-primary" style="float: right;" href=""><i class="fas fa-plus-circle me-2" style="font-size: 18px;"></i> Tambah Data User</a>
+                <a type="submit" class="btn btn-primary" style="float: right;" href="<?= base_url('admin/add-pengguna') ?>"><i class="fas fa-plus-circle me-2" style="font-size: 18px;"></i> Tambah Data User</a>
                 <h2>Data Pengguna Jasa</h2>
             </div>
             <div class="card-datatable table-responsive pt-0">

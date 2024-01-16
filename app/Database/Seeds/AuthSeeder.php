@@ -9,27 +9,17 @@ class AuthSeeder extends Seeder
     public function run()
     {
         $data = [
-            [
-                'username' => 'Administrator',
-                'email' => 'admin@gmail.com',
-                'password' => password_hash('Admin.123', PASSWORD_DEFAULT),
-                'role' => 'admin',
-            ],
-            [
-                'username' => 'Penyedia',
-                'email' => 'penyedia@gmail.com',
-                'password' => password_hash('penyedia', PASSWORD_DEFAULT),
-                'role' => 'penyedia Jasa',
-            ],
-            [
-                'username' => 'Pengguna',
-                'email' => 'pengguna@gmail.com',
-                'password' => password_hash('pengguna', PASSWORD_DEFAULT),
-                'role' => 'pengguna jasa',
-            ],
-
+            'username' => 'Administrator',
+            'tanggal_lahir' => '2000-01-01',
+            'email' => 'admin@gmail.com',
+            'no_telepon' => '1234567890',
+            'status' => '1',
+            'alamat' => 'Cirebon',
+            'password' => password_hash('Admin.123', PASSWORD_DEFAULT),
+            'foto_profil' => 'admin.jpg',
         ];
 
-        $this->db->table('tbl_user')->insertBatch($data);
+        // Using Query Builder
+        $this->db->table('tb_admin')->insert($data);
     }
 }
