@@ -13,32 +13,40 @@
                     <small class="text-muted float-end">Default label</small>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="<?= site_url('admin/create-pengguna') ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?= base_url('admin/pengguna-jasa/update/' . $item['id_biodata']) ?>" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Full Name</label>
-                            <input type="text" name="nama_lengkap" class="form-control" id="basic-default-fullname" required />
+                            <input type="text" name="nama_lengkap" class="form-control" id="basic-default-fullname" value="<?= $item['nama_lengkap'] ?>" required />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-phone">Phone No</label>
-                            <input type="text" name="no_telepon" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941" required />
+                            <input type="text" name="no_telepon" id="basic-default-phone" class="form-control phone-mask" value="<?= $item['no_telepon'] ?>" required />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-company">Tanggal Lahir</label>
-                            <input type="date" name="tanggal_lahir" class="form-control" id="basic-default-company" required />
+                            <input type="date" name="tanggal_lahir" class="form-control" id="basic-default-company" value="<?= $item['tanggal_lahir'] ?>" required />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-message">Alamat</label>
-                            <textarea name="alamat" id="basic-default-message" class="form-control" placeholder="Isi alamat sesuai KTP" required></textarea>
+                            <textarea name="alamat" id="basic-default-message" class="form-control" required><?= $item['alamat'] ?></textarea>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-company">No KTP</label>
-                            <input type="text" name="nomor_ktp" class="form-control" id="basic-default-company" placeholder="Isi Nomer KTP" required />
+                            <input type="text" name="nomor_ktp" class="form-control" id="basic-default-company" value="<?= $item['nomor_ktp'] ?>" required />
                         </div>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Foto KTP</label>
-                            <input name="foto_ktp" class="form-control" type="file" id="formFile" required />
+                            <?php if (!empty($item['foto_ktp'])) : ?>
+                                <img src="<?= base_url('assets/upload/ktp/' . $item['foto_ktp']) ?>" alt="Current Photo" class="mb-2" style="max-width: 200px" />
+                            <?php else : ?>
+                                <p>No photo available</p>
+                            <?php endif; ?>
+                            <input name="foto_ktp" class="form-control" type="file" id="formFile" accept="image/*" />
                         </div>
-                        <button type="submit" class="btn btn-primary me-1 mb-1" id="createButton">Send</button>
+
+
+                        <button type="submit" class="btn btn-primary me-1 mb-1" id="updateButton">Update</button>
                         <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                         <a href="<?= base_url('admin/pengguna-jasa') ?>" class="btn btn-success me-1 mb-1">Kembali</a>
                     </form>
@@ -48,19 +56,17 @@
     </div>
 </div>
 <script>
-    document.getElementById('createButton').addEventListener('click', function(event) {
-        // Function to show SweetAlert2 notificatio
+    document.getElementById('updateButton').addEventListener('click', function(event) {
         function showSuccessNotification() {
             Swal.fire({
                 icon: 'success',
                 title: 'Form Submitted!',
                 text: 'Your form has been successfully submitted.',
-                showConfirmButton: false, // Hide the confirmation button
-                timer: 2000, // Auto clo
+                showConfirmButton: false,
+                timer: 2000,
             });
         }
 
-        // Call the function to show the notification
         showSuccessNotification();
     });
 </script>

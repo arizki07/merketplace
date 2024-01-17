@@ -35,6 +35,10 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     //pengguna
     $routes->get('pengguna-jasa', 'BiodataController::pengguna');
     $routes->get('add-pengguna', 'BiodataController::add');
+    $routes->post('create-pengguna', 'BiodataController::create');
+    $routes->get('pengguna-jasa/edit/(:segment)', 'BiodataController::edit/$1');
+    $routes->post('pengguna-jasa/update/(:num)', 'BiodataController::update/$1');
+    $routes->get('pengguna-jasa/delete/(:num)', 'BiodataController::delete/$1');
 });
 
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
