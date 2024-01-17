@@ -6,9 +6,23 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\AdminModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use Google_Client;
+
 
 class AuthController extends BaseController
 {
+
+    private function initializeGoogleClient()
+    {
+        $client = new Google_Client();
+        $client->setClientId('433036859309-i6k5h1gt2dfobe6hl3savq0pce622t19.apps.googleusercontent.com');
+        $client->setClientSecret('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');
+        $client->setRedirectUri(base_url('login-google/callback'));
+        $client->addScope('email');
+        $client->addScope('profile');
+        return $client;
+    }
+
     public function index()
     {
         return view('auth/login');
@@ -34,34 +48,27 @@ class AuthController extends BaseController
         $selectedUser = $admin ? $admin : $user;
 
         if ($selectedUser && password_verify($password, $selectedUser['password'])) {
-            if ($selectedUser['status'] == 1) {
-                // Hanya izinkan login jika pengguna sudah terverifikasi
-                $session = \Config\Services::session();
-                $session->set('auth', true);
-                $session->set('email', $selectedUser['email']);
-                $session->set('role', $selectedUser['role']);
-                $session->set('username', $admin ? $selectedUser['username'] : $selectedUser['username']);
+            // Hanya izinkan login jika pengguna sudah terverifikasi
+            $session = \Config\Services::session();
+            $session->set('auth', true);
+            $session->set('email', $selectedUser['email']);
+            $session->set('role', $selectedUser['role']);
+            $session->set('username', $admin ? $selectedUser['username'] : $selectedUser['username']);
 
-                $session->setFlashdata('success', 'Login successful. Welcome, ' . $selectedUser['username'] . '!');
+            $session->setFlashdata('success', 'Login successful. Welcome, ' . $selectedUser['username'] . '!');
 
-                switch ($selectedUser['role']) {
-                    case 'Admin':
-                        return redirect()->to('admin/dashboard');
-                        break;
-                    case 'Penyedia Jasa':
-                        return redirect()->to('penyedia/dashboard');
-                        break;
-                    case 'Pengguna Jasa':
-                        return redirect()->to('pengguna/dashboard');
-                        break;
-                    default:
-                        return redirect()->to('/');
-                }
-            } else {
-                // Jika pengguna belum terverifikasi, kirimkan pesan flash
-                $session = \Config\Services::session();
-                $session->setFlashdata('error', 'Akun Anda belum terverifikasi oleh admin.');
-                return redirect()->to('/login'); // Ganti dengan halaman login
+            switch ($selectedUser['role']) {
+                case 'Admin':
+                    return redirect()->to('admin/dashboard');
+                    break;
+                case 'Penyedia Jasa':
+                    return redirect()->to('penyedia/dashboard');
+                    break;
+                case 'Pengguna Jasa':
+                    return redirect()->to('pengguna/dashboard');
+                    break;
+                default:
+                    return redirect()->to('/');
             }
         }
 
@@ -70,49 +77,59 @@ class AuthController extends BaseController
         return view('auth/login');
     }
 
-    public function register()
+    public function loginGoogle()
     {
-        if ($this->request->getMethod() === 'post') {
-            // Validasi input form, sesuaikan dengan kebutuhan Anda
-            $validation = \Config\Services::validation();
-            $validation->setRules([
-                'username' => 'required|min_length[3]|max_length[255]',
-                'email' => 'required|valid_email|is_unique[tbl_user.email]',
-                'password' => 'required|min_length[6]',
-                'role' => 'required',
-            ]);
+        $client = $this->initializeGoogleClient();
+        $authUrl = $client->createAuthUrl();
+        return redirect()->to($authUrl);
+    }
 
-            if ($validation->withRequest($this->request)->run()) {
-                // Jika validasi sukses, simpan data ke dalam database
-                $userModel = new UserModel();
+    public function googleCallback()
+    {
+        $client = $this->initializeGoogleClient();
+        $code = $this->request->getGet('code');
 
-                $data = [
-                    'username' => $this->request->getPost('username'),
-                    'email' => $this->request->getPost('email'),
-                    'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-                    'role' => $this->request->getPost('role'),
-                    'status' => 0, // Sesuaikan dengan kebutuhan Anda, mungkin perlu verifikasi admin
-                ];
+        if ($code) {
+            $token = $client->fetchAccessTokenWithAuthCode($code);
+            if (!isset($token['error'])) {
+                $oauth2Service = new \Google_Service_Oauth2($client);
+                $userInfo = $oauth2Service->userinfo->get();
 
-                $userModel->insert($data);
+                $googleModel = new GoogleModel();
+                $existingUser = $googleModel->where('google_id', $userInfo->getId())->first();
 
-                // Tambahkan logika verifikasi atau kirim email verifikasi di sini
-
-                // Redirect atau tampilkan pesan sukses
-                return redirect()->to('/login')->with('success', 'Akun berhasil dibuat. Mohon menunggu verifikasi admin.');
+                if (!$existingUser) {
+                    $userData = [
+                        'google_id' => $userInfo->getId(),
+                        'email' => $userInfo->getEmail(),
+                        'name' => $userInfo->getName(),
+                    ];
+                    $googleModel->insert($userData);
+                }
+                $session = session();
+                $session->set('auth', true);
+                $alertMessage = "Selamat datang, " . $userInfo['name'] . "!";
+                return redirect()->to('user/dashboard')->with('logSuccess', $alertMessage);
             } else {
-                // Jika validasi gagal, tampilkan pesan error
-                return view('auth/register', ['validation' => $validation]);
-            }
-        }
 
-        // Tampilkan halaman registrasi jika bukan metode POST
-        return view('auth/register');
+                return redirect()->to('login')->with('error', 'Gagal mengotentikasi dengan Google.');
+            }
+        } else {
+            return redirect()->to('login')->with('error', 'Kode otorisasi tidak ditemukan.');
+        }
     }
 
     public function logout()
     {
-        session()->destroy();
+        $client = $this->initializeGoogleClient();
+        $session = session();
+
+        // Hapus token Google
+        $client->revokeToken();
+
+        // Hancurkan sesi CodeIgniter
+        $session->destroy();
+
         return redirect()->to('/');
     }
 }

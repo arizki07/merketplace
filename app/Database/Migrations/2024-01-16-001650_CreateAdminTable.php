@@ -31,7 +31,8 @@ class CreateAdminTable extends Migration
                 'constraint' => 20,
             ],
             'status' => [
-                'type' => 'INT', 'constraint' => 1, 'default' => 0
+                'type' => 'VARCHAR',
+                'constraint' => 20,
             ],
             'alamat' => [
                 'type' => 'TEXT',
