@@ -29,23 +29,23 @@ class AuthFilter implements FilterInterface
             return redirect()->to('login')->with('succes', 'Silahkan Login!');
         }
 
-        $userRole = session()->get('role');
+        // $userRole = session()->get('role');
 
-        $uri = service('uri');
-        $requestedPage = $uri->getsegment(1);
+        // $uri = service('uri');
+        // $requestedPage = $uri->getsegment(1);
 
-        $allowedPagesWithoutRoleCheck = ['logout', '/'];
+        // $allowedPagesWithoutRoleCheck = ['logout', '/'];
 
-        $allowedPages = [
-            'Admin' => ['admin', 'admin/dashboard'],
-            'Penyedia Jasa' => ['penyedia', 'penyedia/dashboard'],
-            'Pengguna Jasa' => ['pengguna', 'pengguna/dashboard'],
-        ];
+        // $allowedPages = [
+        //     'Admin' => ['admin', 'admin/dashboard'],
+        //     'Penyedia Jasa' => ['penyedia', 'penyedia/dashboard'],
+        //     'Pengguna Jasa' => ['pengguna', 'pengguna/dashboard'],
+        // ];
 
-        if (!isset($userRole) || (!in_array($requestedPage, $allowedPagesWithoutRoleCheck) && !in_array($requestedPage, $allowedPages[$userRole]))) {
-            $userRole = strtolower($userRole);
-            return redirect()->to($userRole . '/dashboard')->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini');
-        }
+        // if (!isset($userRole) || (!in_array($requestedPage, $allowedPagesWithoutRoleCheck) && !in_array($requestedPage, $allowedPages[$userRole]))) {
+        //     $userRole = strtolower($userRole);
+        //     return redirect()->to($userRole . '/dashboard')->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini');
+        // }
     }
 
     /**

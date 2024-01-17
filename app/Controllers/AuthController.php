@@ -5,28 +5,17 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\AdminModel;
+use App\Models\GoogleModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Google_Client;
 
-
 class AuthController extends BaseController
 {
-
-    private function initializeGoogleClient()
-    {
-        $client = new Google_Client();
-        $client->setClientId('433036859309-i6k5h1gt2dfobe6hl3savq0pce622t19.apps.googleusercontent.com');
-        $client->setClientSecret('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');
-        $client->setRedirectUri(base_url('login-google/callback'));
-        $client->addScope('email');
-        $client->addScope('profile');
-        return $client;
-    }
-
     public function index()
     {
         return view('auth/login');
     }
+
 
     public function login()
     {
@@ -59,16 +48,16 @@ class AuthController extends BaseController
 
             switch ($selectedUser['role']) {
                 case 'Admin':
-                    return redirect()->to('admin/dashboard');
-                    break;
-                case 'Penyedia Jasa':
-                    return redirect()->to('penyedia/dashboard');
-                    break;
-                case 'Pengguna Jasa':
-                    return redirect()->to('pengguna/dashboard');
-                    break;
+                return redirect()->to('admin/dashboard');
+                break;
+                case 'Penyedia':
+                return redirect()->to('penyedia/dashboard');
+                break;
+                case 'Pengguna':
+                return redirect()->to('pengguna/dashboard');
+                break;
                 default:
-                    return redirect()->to('/');
+                return redirect()->to('/');
             }
         }
 
@@ -77,12 +66,26 @@ class AuthController extends BaseController
         return view('auth/login');
     }
 
+
+    private function initializeGoogleClient()
+    {
+        $client = new Google_Client();
+        $client->setClientId('26584391220-sacp7mudlviacrn21rcg5hmu4pvs4cgu.apps.googleusercontent.com');
+        $client->setClientSecret('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');
+        $client->setRedirectUri(base_url('google/callback'));
+        $client->addScope('email');
+        $client->addScope('profile');
+        return $client;
+    }
+
+
     public function loginGoogle()
     {
         $client = $this->initializeGoogleClient();
         $authUrl = $client->createAuthUrl();
         return redirect()->to($authUrl);
     }
+
 
     public function googleCallback()
     {
@@ -95,7 +98,7 @@ class AuthController extends BaseController
                 $oauth2Service = new \Google_Service_Oauth2($client);
                 $userInfo = $oauth2Service->userinfo->get();
 
-                $googleModel = new GoogleModel();
+                $googleModel = new \App\Models\GoogleModel();
                 $existingUser = $googleModel->where('google_id', $userInfo->getId())->first();
 
                 if (!$existingUser) {
@@ -109,7 +112,8 @@ class AuthController extends BaseController
                 $session = session();
                 $session->set('auth', true);
                 $alertMessage = "Selamat datang, " . $userInfo['name'] . "!";
-                return redirect()->to('user/dashboard')->with('logSuccess', $alertMessage);
+                return redirect()->to('pengguna/dashboard')->with('logSuccess', $alertMessage);
+
             } else {
 
                 return redirect()->to('login')->with('error', 'Gagal mengotentikasi dengan Google.');
@@ -119,17 +123,11 @@ class AuthController extends BaseController
         }
     }
 
+
     public function logout()
     {
-        $client = $this->initializeGoogleClient();
         $session = session();
-
-        // Hapus token Google
-        $client->revokeToken();
-
-        // Hancurkan sesi CodeIgniter
         $session->destroy();
-
         return redirect()->to('/');
     }
 }

@@ -15,4 +15,13 @@ class DashboardController extends BaseController
         ];
         return view('pages/dashboard', $data);
     }
+
+    public function pengguna()
+    {
+        $data = [
+            'title' => 'Dashboard',
+            'active' => 'dashboard',
+        ];
+        return view('pages/pengguna/index', $data);
+    }
 }

@@ -12,8 +12,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0",
-        "google/apiclient": "^2.15",
-        "league/oauth2-google": "4.0",
+        "google/apiclient": "^2.13.0",
         "phpmailer/phpmailer": "^6.9"
     },
     "require-dev": {

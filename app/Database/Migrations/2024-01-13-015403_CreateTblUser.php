@@ -29,12 +29,13 @@ class CreateTblUser extends Migration
             ],
             'role' => [
                 'type' => 'ENUM',
-                'constraint' => ['Admin', 'Pengguna Jasa', 'Penyedia Jasa'],
+                'constraint' => ['Admin', 'Pengguna', 'Penyedia'],
             ],
             'status' => [
                 'type' => 'VARCHAR',
                 'constraint' => 20,
             ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
         $this->forge->addKey('id_user', true);
         $this->forge->createTable('tbl_user');

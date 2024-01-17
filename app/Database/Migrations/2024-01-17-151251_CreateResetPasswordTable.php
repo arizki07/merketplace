@@ -15,7 +15,7 @@ class CreateResetPasswordTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'id_user' => [
+            'user_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
@@ -27,18 +27,11 @@ class CreateResetPasswordTable extends Migration
             'expires_at' => [
                 'type' => 'DATETIME',
             ],
-            'created_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
-            ],
-            'updated_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
-            ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
 
         $this->forge->addKey('id_reset_pass', true);
-        // $this->forge->addForeignKey('id_user', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('user_id', 'tb_user', 'id_user', 'CASCADE', 'CASCADE');
         $this->forge->createTable('tb_reset_password');
     }
 

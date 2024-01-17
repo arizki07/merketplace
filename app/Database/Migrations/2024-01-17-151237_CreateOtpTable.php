@@ -23,10 +23,7 @@ class CreateOtpTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'created_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
-            ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
 
         $this->forge->addPrimaryKey('id_otp');

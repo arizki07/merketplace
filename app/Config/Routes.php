@@ -10,8 +10,8 @@ $routes->get('/', 'AuthController::index');
 //Login
 $routes->get('login', 'AuthController::index');
 $routes->post('login', 'AuthController::login');
-$routes->get('login-google', 'AuthController::loginGoogle');
-$routes->get('login-google/callback', 'AuthController::googleCallback');
+$routes->get('login/google-client/tURkWTpdyF68y85gV753fCcT7Kf37j', 'AuthController::loginGoogle');
+$routes->get('google/callback', 'AuthController::googleCallback');
 $routes->get('logout', 'AuthController::logout');
 
 //register
@@ -57,5 +57,5 @@ $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
 
 $routes->group('pengguna', ['filter' => 'auth'], function ($routes) {
 
-    $routes->get('dashboard', 'DashboardController::index');
+    $routes->get('dashboard', 'DashboardController::pengguna');
 });
