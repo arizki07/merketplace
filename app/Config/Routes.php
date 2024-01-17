@@ -10,12 +10,21 @@ $routes->get('/', 'AuthController::index');
 //Login
 $routes->get('login', 'AuthController::index');
 $routes->post('login', 'AuthController::login');
+$routes->get('login-google', 'AuthController::loginGoogle');
+$routes->get('login-google/callback', 'AuthController::googleCallback');
 $routes->get('logout', 'AuthController::logout');
 
-//Registrasi
-$routes->get('/register', 'AuthController::register');
-$routes->post('register', 'AuthController::register');
+//register
+$routes->get('register', 'RegisterController::register');
+$routes->post('register', 'RegisterController::register');
+$routes->get('verify-otp', 'RegisterController::verifyOTP');
+$routes->post('verify-otp', 'RegisterController::verifyOTP');
 
+//reset-password
+$routes->get('forgot-password', 'ResetPasswordController::forgotPassword');
+$routes->post('forgot-password', 'ResetPasswordController::processForgotPassword');
+$routes->get('reset-password/(:any)', 'ResetPasswordController::showResetForm/$1', ['as' => 'password.reset']);
+$routes->post('reset-password', 'ResetPasswordController::reset', ['as' => 'password.update']);
 
 
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {

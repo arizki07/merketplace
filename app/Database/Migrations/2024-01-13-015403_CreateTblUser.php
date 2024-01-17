@@ -32,7 +32,8 @@ class CreateTblUser extends Migration
                 'constraint' => ['Admin', 'Pengguna Jasa', 'Penyedia Jasa'],
             ],
             'status' => [
-                'type' => 'INT', 'constraint' => 1, 'default' => 0
+                'type' => 'VARCHAR',
+                'constraint' => 20,
             ],
         ]);
         $this->forge->addKey('id_user', true);
