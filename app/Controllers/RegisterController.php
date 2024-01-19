@@ -18,7 +18,7 @@ class RegisterController extends BaseController
 
             // Validasi form
             $rules = [
-                'nama' => 'required',
+                'username' => 'required',
                 'email' => 'required|valid_email',
                 'password' => 'required|min_length[8]|regex_match[/^(?=.*[A-Z])(?=.*\d)(?=.*[@\.\,\!\#\$\%\^\&\*\(\)\-\_\+\=\?\:\;\<\>\{\}\[\]])/]',
             ];
@@ -34,9 +34,10 @@ class RegisterController extends BaseController
             }
 
             $data = [
-                'nama' => $this->request->getPost('nama'),
+                'username' => $this->request->getPost('username'),
                 'email' => $this->request->getPost('email'),
-                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT)
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                'role' => $this->request->getPost('role')
             ];
 
             $existingEmail = $model->where('email', $data['email'])->first();
@@ -123,12 +124,12 @@ class RegisterController extends BaseController
             $mail->Port = 587;
 
             // Recipients
-            $mail->setFrom('ptpintex6@gmail.com', 'PT-PINTEX');
+            $mail->setFrom('ptpintex6@gmail.com', 'WEB-CRAFSER');
             $mail->addAddress($email);
 
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Kode OTP Registrasi PT-PINTEX';
+            $mail->Subject = 'Kode OTP Registrasi WEB-CRAFSER';
 
             $emailMessage = '<html>';
             $emailMessage .= '<head>';

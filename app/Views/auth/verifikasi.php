@@ -71,10 +71,9 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-1 pt-2">Two Step Verification 💬</h4>
+                    <h4 class="mb-1 pt-2">Verifikasi Dua Langkah 💬</h4>
                     <p class="text-start mb-4">
-                        We sent a verification code to your mobile. Enter the code from the mobile in the field below.
-                        <span class="fw-bold d-block mt-2">******1234</span>
+                        Kami mengirimkan kode verifikasi ke email Anda. Masukkan kode Otp dari email pada kolom di bawah ini.
                     </p>
                     <p class="mb-0 fw-semibold">Type your 6 digit security code</p>
                     <?php if (session()->getFlashdata('error')) : ?>
@@ -83,20 +82,16 @@
                     <?php if (session()->getFlashdata('success')) : ?>
                         <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
                     <?php endif; ?>
+
                     <form id="twoStepsForm" action="<?= base_url('verify-otp') ?>" method="POST">
+                        <?= csrf_field() ?>
                         <div class="mb-3">
-                            <div class="auth-input-wrapper d-flex align-items-center justify-content-sm-between numeral-mask-wrapper">
-                                <input type="text" class="form-control auth-input h-px-50 text-center numeral-mask text-center h-px-50 mx-1 my-2" maxlength="1" autofocus />
-                                <input type="text" class="form-control auth-input h-px-50 text-center numeral-mask text-center h-px-50 mx-1 my-2" maxlength="1" />
-                                <input type="text" class="form-control auth-input h-px-50 text-center numeral-mask text-center h-px-50 mx-1 my-2" maxlength="1" />
-                                <input type="text" class="form-control auth-input h-px-50 text-center numeral-mask text-center h-px-50 mx-1 my-2" maxlength="1" />
-                                <input type="text" class="form-control auth-input h-px-50 text-center numeral-mask text-center h-px-50 mx-1 my-2" maxlength="1" />
-                                <input type="text" class="form-control auth-input h-px-50 text-center numeral-mask text-center h-px-50 mx-1 my-2" maxlength="1" />
-                            </div>
-                            <!-- Create a hidden field which is combined by 3 fields above -->
-                            <input type="hidden" name="otp" />
+                            <label class="form-label">Kode OTP</label>
+                            <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter your email" autofocus />
                         </div>
-                        <button class="btn btn-primary d-grid w-100 mb-3">Verify my account</button>
+                        <!-- Create a hidden field which is combined by 3 fields above -->
+                        <!-- <input type="hidden" name="otp" /> -->
+                        <button type="submit" class="btn btn-primary d-grid w-100 mb-5">Verify my account</button>
                         <div class="text-center">
                             Didn't get the code?
                             <a href="javascript:void(0);"> Resend </a>
@@ -137,6 +132,59 @@
     <!-- Page JS -->
     <script src="<?= base_url() ?>assets/js/pages-auth.js"></script>
     <script src="<?= base_url() ?>assets/js/pages-auth-two-steps.js"></script>
+    <script>
+        function startCountdown(duration, display, messageDisplay) {
+            var startTime = new Date().getTime();
+            localStorage.setItem('countdown_start', startTime);
+
+            function updateCountdown() {
+                var currentTime = new Date().getTime();
+                var elapsedTime = currentTime - startTime;
+                var remainingTime = duration - Math.floor(elapsedTime / 1000);
+
+                if (remainingTime <= 0) {
+                    clearInterval(countdownInterval);
+                    localStorage.removeItem('countdown_start');
+                    display.textContent = "00:00";
+                    messageDisplay.textContent = "Kode OTP sudah melebihi batas waktu (EXPIRED)";
+                } else {
+                    var minutes = parseInt(remainingTime / 60, 10);
+                    var seconds = remainingTime % 60;
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+                }
+            }
+
+            updateCountdown();
+            var countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        window.onload = function() {
+            var fiveMinutes = 5 * 60,
+                display = document.querySelector('#countdown'),
+                messageDisplay = document.querySelector('#countdown-message');
+
+            var storedStartTime = localStorage.getItem('countdown_start');
+            if (storedStartTime) {
+                var currentTime = new Date().getTime();
+                var elapsedTime = currentTime - storedStartTime;
+                var remainingTime = fiveMinutes - Math.floor(elapsedTime / 1000);
+
+                if (remainingTime > 0) {
+                    startCountdown(remainingTime, display, messageDisplay);
+                } else {
+                    localStorage.removeItem('countdown_start');
+                    display.textContent = "00:00";
+                    messageDisplay.textContent = "Kode OTP sudah melebihi batas waktu (Expired)";
+                }
+            } else {
+                startCountdown(fiveMinutes, display, messageDisplay);
+            }
+        };
+    </script>
 </body>
 
 </html>
