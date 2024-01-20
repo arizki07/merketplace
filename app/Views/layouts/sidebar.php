@@ -56,8 +56,7 @@
                     <i class="menu-icon tf-icons ti ti-address-book"></i>
                     <div>Biodata</div>
                 </a>
-
-                <ul class="menu-sub style=" <?= ($active == 'penyedia' || $active == 'pengguna') ? 'display: block;' : '' ?>">
+                <ul class="menu-sub">
                     <li class="menu-item <?= ($active == 'penyedia') ? 'active' : '' ?>">
                         <a href="<?= base_url('admin/penyedia-jasa') ?>" class="menu-link">
                             <div>Penyedia Jasa</div>
@@ -70,25 +69,26 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item <?= ($active == 'jasa' || $active == 'detail') ? 'active' : '' ?>">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-list-details"></i>
                     <div>List Jasa</div>
                 </a>
 
                 <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="layouts-collapsed-menu.html" class="menu-link">
+                    <li class="menu-item <?= ($active == 'jasa') ? 'active' : '' ?>">
+                        <a href="<?= base_url('admin/list-jasa') ?>" class="menu-link">
                             <div>Product Jasa</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="layouts-content-navbar.html" class="menu-link">
+                    <li class="menu-item <?= ($active == 'detail') ? 'active' : '' ?>">
+                        <a href="<?= base_url('admin/detail') ?>" class="menu-link">
                             <div>Detail Jasa</div>
                         </a>
                     </li>
                 </ul>
             </li>
+
 
             <!-- Apps & Pages -->
             <li class="menu-header small text-uppercase">

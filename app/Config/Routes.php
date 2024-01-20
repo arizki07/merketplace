@@ -53,6 +53,17 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('pengguna-jasa/edit/(:segment)', 'BiodataController::edit/$1');
     $routes->post('pengguna-jasa/update/(:num)', 'BiodataController::update/$1');
     $routes->get('pengguna-jasa/delete/(:num)', 'BiodataController::delete/$1');
+
+    //List-Jasa
+    $routes->get('list-jasa', 'ListJasaController::index');
+    $routes->get('add-list-jasa', 'ListJasaController::add');
+    $routes->post('store-list-jasa', 'ListJasaController::store');
+    $routes->get('list-jasa/edit/(:segment)', 'ListJasaController::edit/$1');
+    $routes->post('list-jasa/update/(:num)', 'ListJasaController::update/$1');
+    $routes->get('list-jasa/delete/(:num)', 'ListJasaController::delete/$1');
+
+    //Detail jasa
+    $routes->get('detail', 'ListJasaController::detail');
 });
 
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
