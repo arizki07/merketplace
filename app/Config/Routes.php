@@ -65,6 +65,14 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     //Detail jasa
     $routes->get('detail', 'ListJasaController::detail');
 
+    //pesanan
+    $routes->get('pesanan', 'PesananController::index');
+    $routes->get('create', 'PesananController::create');
+    $routes->post('pesanan/store', 'PesananController::store');
+    $routes->get('pesanan/edit/(:num)', 'PesananController::edit/$1');
+    $routes->post('pesanan/update/(:num)', 'PesananController::update/$1');
+    $routes->get('pesanan/delete/(:num)', 'PesananController::delete/$1');
+
     //transaksi
     $routes->get('transaksi', 'TransaksiController::index');
 });
