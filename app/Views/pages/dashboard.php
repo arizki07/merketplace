@@ -1,7 +1,8 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
 
-<div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 py-5">
+    <?= $this->include('components/alerts') ?>
     <?php if (session()->get('role') === 'Admin') : ?>
     <div class="row">
         <?php

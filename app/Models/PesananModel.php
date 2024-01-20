@@ -15,6 +15,6 @@ class PesananModel extends Model
         'alamat_pemesanan',
         'tanggal_pelaksanaan',
         'no_telepon',
-        'create_at',
+        'created_at',
     ];
 }

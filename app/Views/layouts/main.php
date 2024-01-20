@@ -30,10 +30,10 @@
                     <!-- / Content -->
 
                     <!-- Footer -->
-                    <?= $this->include('layouts/footer') ?>
                     <!-- / Footer -->
 
                     <div class="content-backdrop fade"></div>
+                    <?= $this->include('layouts/footer') ?>
                 </div>
                 <!-- Content wrapper -->
             </div>

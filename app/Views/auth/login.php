@@ -132,16 +132,9 @@
                         </div>
 
                         <div class="d-flex justify-content-center">
-                            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                                <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-                            </a>
 
-                            <a href="<?= base_url('login/google-client/tURkWTpdyF68y85gV753fCcT7Kf37j') ?>" class="btn btn-icon btn-label-google-plus me-3">
-                                Login with gogle
-                            </a>
-
-                            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                                <i class="tf-icons fa-brands fa-twitter fs-5"></i>
+                            <a href="<?= base_url('login/google-client/tURkWTpdyF68y85gV753fCcT7Kf37j') ?>" class="btn btn-label-google-plus me-3">
+                                <i class="tf-icons fa-brands fa-google fs-5 me-2"></i> Login With Google
                             </a>
                         </div>
                     </div>
