@@ -154,13 +154,14 @@
         <!-- Dashboards -->
         <li class="menu-item <?= ($active ?? '') == 'dashboard' ? 'active' : '' ?>">
             <a href="<?= base_url('penyedia/dashboard') ?>" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-mail"></i>
+                <i class="menu-icon tf-icons ti ti-dashboard"></i>
                 <div>Dashboard</div>
             </a>
         </li>
 
         <li class="menu-item <?= ($active == 'profile') ? 'active' : '' ?>">
             <a href="<?= base_url('/penyedia/profile/create') ?>" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
                 <div>Profile</div>
             </a>
         </li>
@@ -199,13 +200,14 @@
         <!-- Dashboards -->
         <li class="menu-item <?= ($active ?? '') == 'dashboard' ? 'active' : '' ?>">
             <a href="<?= base_url('penyedia/dashboard') ?>" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-mail"></i>
+                <i class="menu-icon tf-icons ti ti-dashboard"></i>
                 <div>Dashboard</div>
             </a>
         </li>
 
         <li class="menu-item <?= ($active == 'profile') ? 'active' : '' ?>">
             <a href="<?= base_url('/penyedia/profile') ?>" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
                 <div>Profile</div>
             </a>
         </li>
@@ -215,13 +217,15 @@
         </li>
 
         <li class="menu-item <?= ($active == 'jasa') ? 'active' : '' ?>">
-            <a href="<?= base_url('admin/list-jasa') ?>" class="menu-link">
+            <a href="<?= base_url('penyedia/list-jasa') ?>" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-address-book"></i>
                 <div>Product Jasa</div>
             </a>
         </li>
 
         <li class="menu-item <?= ($active == 'detail') ? 'active' : '' ?>">
-            <a href="<?= base_url('admin/detail') ?>" class="menu-link">
+            <a href="<?= base_url('penyedia/detail') ?>" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-list-detail"></i>
                 <div>Detail Jasa</div>
             </a>
         </li>
@@ -231,13 +235,13 @@
             <span class="menu-header-text">Transaksi &amp; Ulasan</span>
         </li>
         <li class="menu-item <?= ($active == 'pesanan') ? 'active' : '' ?>">
-            <a href="<?= base_url('admin/pesanan') ?>" class="menu-link">
+            <a href="<?= base_url('penyedia/pesanan') ?>" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-messages"></i>
                 <div>Pesanan</div>
             </a>
         </li>
         <li class="menu-item <?= ($active == 'transaksi') ? 'active' : '' ?>">
-            <a href="<?= base_url('admin/transaksi') ?>" class="menu-link">
+            <a href="<?= base_url('penyedia/transaksi') ?>" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-coin"></i>
                 <div>Transaksi</div>
             </a>
