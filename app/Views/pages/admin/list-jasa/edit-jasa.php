@@ -18,7 +18,10 @@
                             <label for="nama_jasa" class="form-label">Nama Jasa:</label>
                             <input type="text" name="nama_jasa" class="form-control" value="<?= $jasaData['nama_jasa'] ?>" required>
                         </div>
-
+                        <?php foreach($biodata as $bio) : ?>
+                                <?php if($biodata as $bio) : ?>
+                                <?php endif ?>
+                                <?php endforeach ?>
                         <div class="mb-3">
                             <label for="jenis_jasa" class="form-label">Jenis Jasa:</label>
                             <input type="text" name="jenis_jasa" class="form-control" value="<?= $jasaData['jenis_jasa'] ?>" required>

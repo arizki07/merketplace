@@ -37,6 +37,6 @@ class AuthSeeder extends Seeder
         ];
 
         $this->db->table('tb_admin')->insertBatch($adminData);
-        $this->db->table('tb_user')->insertBatch($userData, true);
+        $this->db->table('tbl_user')->insertBatch($userData, true);
     }
 }

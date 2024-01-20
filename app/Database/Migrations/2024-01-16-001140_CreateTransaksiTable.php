@@ -25,6 +25,10 @@ class CreateTransaksiTable extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
+            'order_id' => [
+                'type' => 'INT',
+                'constraint' => 30,
+            ],
             'jumlah_transaksi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
