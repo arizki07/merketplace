@@ -19,4 +19,9 @@ class UserModel extends Model
     {
         return $this->hasOne(BiodataModel::class, 'user_id', 'id_user');
     }
+
+    public function getUserById($id_user)
+    {
+        return $this->where('id_user', $id_user)->first();
+    }
 }

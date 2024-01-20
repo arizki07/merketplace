@@ -83,6 +83,13 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('dashboard', 'DashboardController::index');
+
+    // Profile
+    $routes->get('profile', 'Penyedia\ProfileController::index');
+    $routes->get('profile/create', 'Penyedia\ProfileController::create');
+    $routes->post('profile/store', 'Penyedia\ProfileController::store');
+    $routes->get('profile/edit/(:num)', 'Penyedia\ProfileController::edit/$1');
+    $routes->post('profile/update/(:num)', 'Penyedia\ProfileController::update/$1');
 });
 
 $routes->group('pengguna', ['filter' => 'auth'], function ($routes) {
