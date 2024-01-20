@@ -27,38 +27,40 @@
 
  <script src="<?= base_url() ?>assets/datatables/datatables.min.js"></script>
 
+ <script src="<?= base_url() ?>assets/js/pages-profile.js"></script>
+
  <script>
-     new DataTable('#example');
+new DataTable('#example');
  </script>
 
  <!-- Sweetalert untuk login -->
  <script>
-     document.addEventListener('DOMContentLoaded', function() {
-         // Get the logout button element
-         var logoutBtn = document.getElementById('logoutBtn');
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the logout button element
+    var logoutBtn = document.getElementById('logoutBtn');
 
-         // Add a click event listener to the logout button
-         logoutBtn.addEventListener('click', function() {
-             // Show a confirmation dialog
-             Swal.fire({
-                 title: 'Are you sure?',
-                 text: "You will be logged out.",
-                 icon: 'warning',
-                 showCancelButton: true,
-                 confirmButtonText: 'Yes, log out',
-                 cancelButtonText: 'Cancel',
-                 customClass: {
-                     confirmButton: 'btn btn-primary me-3',
-                     cancelButton: 'btn btn-label-secondary'
-                 },
-                 buttonsStyling: false
-             }).then(function(result) {
-                 // Check if the user clicked the confirm button
-                 if (result.isConfirmed) {
-                     // Redirect to the logout URL or trigger your logout process
-                     window.location.href = "<?= base_url('logout') ?>";
-                 }
-             });
-         });
-     });
+    // Add a click event listener to the logout button
+    logoutBtn.addEventListener('click', function() {
+        // Show a confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will be logged out.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, log out',
+            cancelButtonText: 'Cancel',
+            customClass: {
+                confirmButton: 'btn btn-primary me-3',
+                cancelButton: 'btn btn-label-secondary'
+            },
+            buttonsStyling: false
+        }).then(function(result) {
+            // Check if the user clicked the confirm button
+            if (result.isConfirmed) {
+                // Redirect to the logout URL or trigger your logout process
+                window.location.href = "<?= base_url('logout') ?>";
+            }
+        });
+    });
+});
  </script>
