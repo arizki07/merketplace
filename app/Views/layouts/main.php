@@ -29,10 +29,10 @@
                     <!-- / Content -->
 
                     <!-- Footer -->
-                    <?= $this->include('layouts/footer') ?>
                     <!-- / Footer -->
 
                     <div class="content-backdrop fade"></div>
+                    <?= $this->include('layouts/footer') ?>
                 </div>
                 <!-- Content wrapper -->
             </div>
@@ -46,7 +46,7 @@
         <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
-
+    <?= $this->renderSection('scripts') ?>
     <?= $this->include('layouts/script') ?>
 </body>
 

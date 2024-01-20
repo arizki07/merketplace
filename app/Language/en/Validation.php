@@ -1,4 +1,6 @@
 <?php
 
-// override core en language system validation or define your own en language validation message
-return [];
+return [
+    'required' => 'Form {field} harus diisi.',
+    'max_length' => 'Form {field} tidak boleh lebih dari {param} karakter.',
+];

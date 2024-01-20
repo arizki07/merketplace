@@ -51,7 +51,7 @@
                 <span class="menu-header-text">Jasa</span>
             </li>
             <!-- Layouts -->
-            <li class="menu-item <?= ($active == 'penyedia' || $active == 'pengguna') ? 'active' : '' ?>">
+            <li class="menu-item <?= ($active == 'penyedia' || $active == 'pengguna') ? 'active open' : '' ?>">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-address-book"></i>
                     <div>Biodata</div>
@@ -69,7 +69,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-item <?= ($active == 'jasa' || $active == 'detail') ? 'active' : '' ?>">
+            <li class="menu-item <?= ($active == 'jasa' || $active == 'detail') ? 'active open' : '' ?>">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-list-details"></i>
                     <div>List Jasa</div>

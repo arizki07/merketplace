@@ -118,12 +118,12 @@ class ListJasaController extends BaseController
     public function detail()
     {
         $jasaModel = new ListJasaModel();
-        $jasaData = $jasaModel->findAll(); // Ambil data dari model
+        $jasaData = $jasaModel->findAll();
 
         $data = [
             'title' => 'Detail-jasa',
             'active' => 'detail',
-            'jasaModel'  => $jasaData, // Gunakan variabel yang sesuai
+            'jasaModel'  => $jasaData,
         ];
 
         return view('pages/admin/list-jasa/detail', $data);

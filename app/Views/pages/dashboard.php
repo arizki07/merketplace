@@ -1,25 +1,10 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
 
-<div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 py-5">
+    <?= $this->include('components/alerts') ?>
     <?php if (session()->get('role') === 'Admin') : ?>
         <div class="row">
-            <?php
-            $session = \Config\Services::session();
-            $successMessage = $session->getFlashdata('success');
-            if ($successMessage) {
-                echo '<div id="successAlert" class="alert alert-success">' . $successMessage . '</div>';
-                echo '
-    <script>
-        setTimeout(function() {
-            var successAlert = document.getElementById("successAlert");
-            if (successAlert) {
-                successAlert.style.display = "none";
-            }
-        }, 5000); // 5000 milliseconds = 5 seconds
-    </script>';
-            }
-            ?>
             <!-- View sales -->
             <div class="col-xl-4 mb-4 col-lg-5 col-12">
                 <div class="card">

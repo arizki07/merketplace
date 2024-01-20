@@ -73,6 +73,9 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->post('pesanan/update/(:num)', 'PesananController::update/$1');
     $routes->get('pesanan/delete/(:num)', 'PesananController::delete/$1');
 
+    $routes->match(['get', 'post'], 'payment/(:num)/(:any)/(:any)', 'PaymentGatewayController::index/$1/$2/$3');
+    $routes->match(['get', 'post'], 'payment/update-status/(:num)', 'PaymentGatewayController::updateStatus/$1');
+
     //transaksi
     $routes->get('transaksi', 'TransaksiController::index');
 });

@@ -48,16 +48,16 @@ class AuthController extends BaseController
 
             switch ($selectedUser['role']) {
                 case 'Admin':
-                return redirect()->to('admin/dashboard');
-                break;
+                    return redirect()->to('admin/dashboard');
+                    break;
                 case 'Penyedia':
-                return redirect()->to('penyedia/dashboard');
-                break;
+                    return redirect()->to('penyedia/dashboard');
+                    break;
                 case 'Pengguna':
-                return redirect()->to('pengguna/dashboard');
-                break;
+                    return redirect()->to('pengguna/dashboard');
+                    break;
                 default:
-                return redirect()->to('/');
+                    return redirect()->to('/');
             }
         }
 
@@ -113,7 +113,6 @@ class AuthController extends BaseController
                 $session->set('auth', true);
                 $alertMessage = "Selamat datang, " . $userInfo['name'] . "!";
                 return redirect()->to('pengguna/dashboard')->with('logSuccess', $alertMessage);
-
             } else {
 
                 return redirect()->to('login')->with('error', 'Gagal mengotentikasi dengan Google.');
