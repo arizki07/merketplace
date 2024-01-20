@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\ListJasaModel;
+use App\Models\BiodataModel;
+use App\Models\UserModel;
 
 class ListJasaController extends BaseController
 {
@@ -22,9 +24,17 @@ class ListJasaController extends BaseController
 
     public function add()
     {
+        $biodataModel = new BiodataModel();
+        $userModel = new UserModel();
+
+        $user = $userModel->findAll();
+        $biodata = $biodataModel->findAll();
+
         $data = [
             'title' => 'add-List-Jasa',
             'active' => 'jasa',
+            'user' => $user,
+            'biodata' => $biodata,
         ];
         return view('pages/admin/list-jasa/add-jasa', $data);
     }
@@ -34,6 +44,8 @@ class ListJasaController extends BaseController
         $jasaModel = new ListJasaModel();
         $data = [
             'nama_jasa' => $this->request->getVar('nama_jasa'),
+            'biodata_id' => $this->request->getVar('biodata_id'),
+            'user_id' => $this->request->getVar('user_id'),
             'jenis_jasa' => $this->request->getVar('jenis_jasa'),
             'harga_jasa' => $this->request->getVar('harga_jasa'),
             'jumlah_foto' => $this->request->getVar('jumlah_foto'),
@@ -58,10 +70,18 @@ class ListJasaController extends BaseController
     {
         $jasaModel = new ListJasaModel();
         $data['jasaData'] = $jasaModel->find($id);
+
+        $biodataModel = new BiodataModel();
+        $userModel = new UserModel();
+
+        $user = $userModel->findAll();
+        $biodata = $biodataModel->findAll();
         $data = [
             'title' => 'Edit-list-jasa',
             'active' => 'jasa',
             'jasaData' => $data['jasaData'],
+            'user' => $user,
+            'biodata' => $biodata,
 
         ];
         return view('pages/admin/list-jasa/edit-jasa', $data);
@@ -73,6 +93,8 @@ class ListJasaController extends BaseController
 
         $data = [
             'nama_jasa' => $this->request->getVar('nama_jasa'),
+            'biodata_id' => $this->request->getVar('biodata_id'),
+            'user_id' => $this->request->getVar('user_id'),
             'jenis_jasa' => $this->request->getVar('jenis_jasa'),
             'harga_jasa' => $this->request->getVar('harga_jasa'),
             'jumlah_foto' => $this->request->getVar('jumlah_foto'),
