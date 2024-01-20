@@ -27,6 +27,7 @@
                         <?php foreach ($biodata as $index => $item) : ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
+                                <td><?= $item['id_user'] ?></td>
                                 <td><?= $item['nama_lengkap'] ?></td>
                                 <td><?= $item['no_telepon'] ?></td>
                                 <td><?= $item['tanggal_lahir'] ?></td>

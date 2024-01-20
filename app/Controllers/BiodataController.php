@@ -31,6 +31,7 @@ class BiodataController extends BaseController
     public function create()
     {
         $biodataModel = new BiodataModel();
+
         $data = [
             'nama_lengkap' => $this->request->getVar('nama_lengkap'),
             'no_telepon'        => $this->request->getVar('no_telepon'),

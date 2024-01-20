@@ -14,4 +14,9 @@ class UserModel extends Model
     {
         return $this->where('email', $email)->first();
     }
+
+    public function biodata()
+    {
+        return $this->hasOne(BiodataModel::class, 'user_id', 'id_user');
+    }
 }
