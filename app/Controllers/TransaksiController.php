@@ -9,6 +9,10 @@ class TransaksiController extends BaseController
 {
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Transaksi',
+            'active' => 'transaksi',
+        ];
+        return view('pages/admin/transaksi/index', $data);
     }
 }

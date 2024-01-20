@@ -64,6 +64,9 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     //Detail jasa
     $routes->get('detail', 'ListJasaController::detail');
+
+    //transaksi
+    $routes->get('transaksi', 'TransaksiController::index');
 });
 
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {

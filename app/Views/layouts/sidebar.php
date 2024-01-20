@@ -94,8 +94,8 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Transaksi &amp; Ulasan</span>
             </li>
-            <li class="menu-item">
-                <a href="app-email.html" class="menu-link">
+            <li class="menu-item <?= ($active == 'transaksi') ? 'active' : '' ?>">
+                <a href="<?= base_url('admin/transaksi') ?>" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-coin"></i>
                     <div>Transaksi</div>
                 </a>
