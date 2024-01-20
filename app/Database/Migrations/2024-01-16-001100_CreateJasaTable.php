@@ -49,7 +49,8 @@ class CreateJasaTable extends Migration
                 'constraint' => 20,
             ],
             'testimoni_foto' => [
-                'type' => 'TEXT',
+                'type' => 'VARCHAR',
+                'constraint' => 150,
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
