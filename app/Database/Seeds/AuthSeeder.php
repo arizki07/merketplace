@@ -11,7 +11,7 @@ class AuthSeeder extends Seeder
         $adminData = [
             'username' => 'Administrator',
             'tanggal_lahir' => '2000-01-01',
-            'email' => 'admin@gmail.com',
+            'email' => 'mosyahizuku@gmail.com',
             'no_telepon' => '1234567890',
             'status' => '1',
             'alamat' => 'Cirebon',

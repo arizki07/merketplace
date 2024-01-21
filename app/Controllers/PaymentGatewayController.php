@@ -45,12 +45,12 @@ class PaymentGatewayController extends BaseController
         $userData = $userModel->getUserByEmail($biodataData['user_id']);
 
         $firstName = $biodataData['nama_lengkap'] ?? 'Guest';
-        $email = $userData['email'] ?? 'default@example.com';
+        // $email = $userData['email'] ?? 'default@example.com';
 
-        $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-        if ($email === false) {
-            $email = 'default@example.com';
-        }
+        // $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+        // if ($email === false) {
+        //     $email = 'default@example.com';
+        // }
 
         $order_id = time();
 
@@ -61,7 +61,7 @@ class PaymentGatewayController extends BaseController
             ],
             'customer_details' => [
                 'first_name' => $firstName,
-                'email' => $email,
+                'email' => session('email'),
                 'phone' => $biodataData['no_telepon'],
             ],
             'finish_redirect_url' => base_url('admin/payment/update-status'),
