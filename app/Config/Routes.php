@@ -78,6 +78,14 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     //transaksi
     $routes->get('transaksi', 'TransaksiController::index');
+
+    //ulasan
+    $routes->get('ulasan', 'UlasanController::index');
+    $routes->get('create-ulasan', 'UlasanController::create');
+    $routes->post('ulasan/store', 'UlasanController::store');
+    $routes->get('ulasan/edit/(:num)', 'UlasanController::edit/$1');
+    $routes->post('ulasan/update/(:num)', 'UlasanController::update/$1');
+    $routes->get('ulasan/delete/(:num)', 'UlasanController::delete/$1');
 });
 
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {

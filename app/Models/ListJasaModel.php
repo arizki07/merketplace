@@ -20,4 +20,9 @@ class ListJasaModel extends Model
         'testimoni_foto',
         'created_at',
     ];
+
+    public function pesanan()
+    {
+        return $this->hasMany(PesananModel::class, 'jasa_id', 'id_jasa');
+    }
 }
