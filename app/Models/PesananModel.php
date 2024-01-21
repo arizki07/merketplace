@@ -17,4 +17,17 @@ class PesananModel extends Model
         'no_telepon',
         'created_at',
     ];
+
+    // public function jasa()
+    // {
+    //     return $this->belongsTo(ListJasaModel::class, 'jasa_id', 'id_jasa');
+    // }
+
+    public function jasa()
+    {
+        return $this->join('tb_jasa', 'tb_jasa.id_jasa = tb_pemesanan.jasa_id')
+            ->select('tb_pemesanan.*, tb_jasa.nama_jasa')
+            ->get()
+            ->getResult();
+    }
 }
