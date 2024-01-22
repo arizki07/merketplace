@@ -13,14 +13,18 @@ class PesananController extends BaseController
     public function index()
     {
         $pemesananModel = new PesananModel();
-
-        // Ambil semua data pesanan
+        $biodataModel = new BiodataModel();
+        $jasaModel = new ListJasaModel();
+        $jasa = $jasaModel->findAll();
         $pesanan = $pemesananModel->findAll();
+        $biodata = $biodataModel->findAll();
 
         $data = [
             'title' => 'Pesanan',
             'active' => 'pesanan',
             'pesanan' => $pesanan,
+            'biodata' => $biodata,
+            'jasa' => $jasa,
         ];
 
         return view('pages/admin/pesanan/index', $data);

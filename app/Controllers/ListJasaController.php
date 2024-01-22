@@ -142,10 +142,18 @@ class ListJasaController extends BaseController
         $jasaModel = new ListJasaModel();
         $jasaData = $jasaModel->findAll();
 
+        $biodataModel = new BiodataModel();
+        $biodata = $biodataModel->findAll();
+
+        $userModel = new UserModel();
+        $user = $userModel->findAll();
+
         $data = [
             'title' => 'Detail-jasa',
             'active' => 'detail',
             'jasaModel'  => $jasaData,
+            'biodata'  => $biodata,
+            'user'  => $user,
         ];
 
         return view('pages/admin/list-jasa/detail', $data);

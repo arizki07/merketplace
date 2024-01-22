@@ -2,8 +2,9 @@
 <?= $this->section('content') ?>
 
 <div class="container-xxl flex-grow-1 container">
-    <h4 class="fw-bold py-3 mb-4 mt-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4>
-    <div class="card">
+    <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4> -->
+    <?= $this->include('components/alerts') ?>
+    <div class="card mt-5">
         <div class="card-body">
             <div class="card-header">
                 <a type="submit" class="btn btn-primary" style="float: right;" href="<?= base_url('admin/add-pengguna') ?>"><i class="fas fa-plus-circle me-2" style="font-size: 18px;"></i> Tambah Data Pengguna Jasa</a>
@@ -34,8 +35,8 @@
                                 <td><?= $item['nomor_ktp'] ?></td>
                                 <td><img src="<?= base_url('./assets/upload/ktp/' . $item['foto_ktp']) ?>" alt="KTP Photo" style="max-width: 100px;"></td>
                                 <td>
-                                    <a href="<?= base_url('admin/pengguna-jasa/edit/' . $item['id_biodata']) ?>" class="btn btn-success sm-1"><i class="fas fa-edit"></i></a>
-                                    <a href="<?= base_url('admin/pengguna-jasa/delete/' . $item['id_biodata']) ?>" id="deleteButton" class="btn btn-danger sm-1"><i class="fas fa-trash"></i></a>
+                                    <a href="<?= base_url('admin/pengguna-jasa/edit/' . $item['id_biodata']) ?>" class="btn btn-warning  btn-sm rounded-pill btn-icon"><i class="fas fa-edit"></i></a>
+                                    <a href="<?= base_url('admin/pengguna-jasa/delete/' . $item['id_biodata']) ?>" id="deleteButton" class="btn btn-danger  btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
 
                                 </td>
                             </tr>
