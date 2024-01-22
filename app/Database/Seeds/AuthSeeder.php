@@ -11,7 +11,7 @@ class AuthSeeder extends Seeder
         $adminData = [
             'username' => 'Administrator',
             'tanggal_lahir' => '2000-01-01',
-            'email' => 'mosyahizuku@gmail.com',
+            'email' => 'webcrafser@gmail.com',
             'no_telepon' => '1234567890',
             'status' => '1',
             'alamat' => 'Cirebon',
@@ -21,15 +21,15 @@ class AuthSeeder extends Seeder
 
         $userData = [
             [
-                'username' => 'pengguna@gmail.com',
-                'email' => 'User Pengguna Jasa',
+                'username' => 'Pengguna Jasa',
+                'email' => 'ajaa0457@gmail.com',
                 'status' => 'Active',
                 'role' => 'Pengguna',
                 'password' => password_hash('Pengguna.123', PASSWORD_DEFAULT)
             ],
             [
-                'username' => 'penyedia@gmail.com',
-                'email' => 'User Penyedia Jasa',
+                'username' => 'Penyedia Jasa',
+                'email' => 'ajaa0457@gmail.com',
                 'status' => 'Active',
                 'role' => 'Penyedia',
                 'password' => password_hash('Penyedia.123', PASSWORD_DEFAULT)

@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container-xxl flex-grow-1 container">
-    <h4 class="fw-bold py-3 mb-4 mt-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4>
+    <h4 class="fw-bold py-3 mb-4 mt-4"><span class="text-muted fw-light">Home /</span> Data Users</h4>
 
     <div class="row g-4">
         <?php foreach ($users as $userData) : ?>
@@ -22,19 +22,19 @@
                                 <li><a class="dropdown-item text-danger" href="javascript:void(0);">Delete</a></li>
                             </ul>
                         </div>
-                        <div class="mx-auto my-3">
+                        <div class="my-3">
                             <img src="<?= base_url() ?>assets/img/avatars/3.png" alt="Avatar Image" class="rounded-circle w-px-100" />
                         </div>
                         <h4 class="mb-1 card-title"><?= $userData['username'] ?></h4>
                         <span class="pb-1"><?= $userData['email'] ?></span>
-                        <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center mt-4">
                             <?php if ($userData['status'] == 1) : ?>
-                                <a href="javascript:;" class="btn btn-primary d-flex align-items-center me-3">
+                                <a href="javascript:;" class="btn btn-label-primary d-flex align-items-center me-3 btn-sm">
                                     <i class="ti-xs me-1 ti ti-user-check me-1"></i>Terverifikasi
                                 </a>
                             <?php else : ?>
-                                <a href="javascript:;" class="btn btn-warning d-flex align-items-center me-3">
-                                    <i class="ti-xs me-1 ti ti-user-check me-1"></i>Belum Terverifikasi
+                                <a href="javascript:;" class="btn btn-label-danger d-flex align-items-center me-3 btn-sm">
+                                    <i class="ti-xs me-1 ti ti-user-x me-1"></i> Belum Terverifikasi
                                 </a>
                             <?php endif; ?>
                         </div>

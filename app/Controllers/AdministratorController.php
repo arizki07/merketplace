@@ -26,7 +26,7 @@ class AdministratorController extends BaseController
         // Anda perlu menambahkan logika keamanan di sini, seperti memastikan hanya admin yang dapat mengakses fungsi ini
 
         $userModel = new UserModel();
-        $userModel->update($userId, ['status' => 1]); // Status diubah menjadi terverifikasi
+        $userModel->update($userId, ['status' => 1]);
 
         // Tampilkan pesan sukses atau redirect ke halaman pengelolaan pengguna
         $session = \Config\Services::session();

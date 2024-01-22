@@ -26,7 +26,7 @@
                             <td><?= $ulasan['pemesanan_id'] ?? 'N/A'; ?></td>
                             <td><?= $ulasan['ulasan'] ?? 'N/A'; ?></td>
                             <td>
-                                <a href="<?= base_url('ulasan/delete/' . $ulasan['id_ulasan']); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                <a href="<?= base_url('ulasan/delete/' . $ulasan['id_ulasan']); ?>" class="btn btn-danger btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

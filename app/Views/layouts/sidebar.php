@@ -33,24 +33,42 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Data Master</span>
             </li>
-            <li class="menu-item <?= ($active ?? '') == 'administrator' ? 'active' : '' ?>">
-                <a href="<?= base_url('admin/administrator') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-user"></i>
-                    <div>Administrator</div>
-                </a>
-            </li>
             <li class="menu-item <?= ($active ?? '') == 'users' ? 'active' : '' ?>">
                 <a href="<?= base_url('admin/data-user') ?>" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-users"></i>
                     <div>Data User</div>
                 </a>
             </li>
+            <li class="menu-item <?= ($active ?? '') == 'administrator' ? 'active' : '' ?>">
+                <a href="<?= base_url('admin/administrator') ?>" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-lock"></i>
+                    <div>Administrator</div>
+                </a>
+            </li>
+            <li class="menu-item <?= ($active == 'google' || $active == 'otp') ? 'active open' : '' ?>">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons ti ti-lock-access"></i>
+                    <div>Authenticated</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item <?= ($active == 'google') ? 'active' : '' ?>">
+                        <a href="<?= base_url('admin/google') ?>" class="menu-link">
+                            <div>Data Akses Google</div>
+                        </a>
+                    </li>
+                    <li class="menu-item <?= ($active == 'otp') ? 'active' : '' ?>">
+                        <a href="<?= base_url('admin/otp') ?>" class="menu-link">
+                            <div>Data OTP</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <!-- Apps & Pages -->
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Jasa</span>
             </li>
             <!-- Layouts -->
-            <li class="menu-item <?= ($active == 'penyedia' || $active == 'pengguna') ? 'active' : '' ?>">
+            <li class="menu-item <?= ($active == 'penyedia' || $active == 'pengguna') ? 'active open' : '' ?>">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-address-book"></i>
                     <div>Biodata</div>
@@ -71,7 +89,7 @@
 
             <li class="menu-item <?= ($active == 'jasa') ? 'active' : '' ?>">
                 <a href="<?= base_url('admin/list-jasa') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-address-book"></i>
+                    <i class="menu-icon tf-icons ti ti-checklist"></i>
                     <div>Product Jasa</div>
                 </a>
             </li>
@@ -101,6 +119,15 @@
                 <a href="<?= base_url('admin/ulasan') ?>" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-messages"></i>
                     <div>Ulasan</div>
+                </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Sessions</span>
+            </li>
+            <li class="menu-item">
+                <a href="<?= base_url('logout') ?>" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-logout"></i>
+                    <div>Logout</div>
                 </a>
             </li>
         </ul>

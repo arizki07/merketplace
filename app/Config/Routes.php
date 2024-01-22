@@ -84,6 +84,12 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('ulasan/edit/(:num)', 'UlasanController::edit/$1');
     $routes->post('ulasan/update/(:num)', 'UlasanController::update/$1');
     $routes->get('ulasan/delete/(:num)', 'UlasanController::delete/$1');
+
+    //GOOGLE & OTP
+    $routes->get('google', 'AuthenticatedController::google');
+    $routes->get('google/delete/(:num)', 'AuthenticatedController::deleteGoogle/$1');
+    $routes->get('otp', 'AuthenticatedController::otp');
+    $routes->get('otp/delete/(:num)', 'AuthenticatedController::deleteOtp/$1');
 });
 
 $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
