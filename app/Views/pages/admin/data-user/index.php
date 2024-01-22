@@ -37,7 +37,6 @@
                                     <i class="ti-xs me-1 ti ti-user-check me-1"></i>Belum Terverifikasi
                                 </a>
                             <?php endif; ?>
-                            <a href="javascript:;" class="btn btn-label-success btn-icon"><i class="ti ti-edit ti-sm"></i></a>
                         </div>
                     </div>
                 </div>

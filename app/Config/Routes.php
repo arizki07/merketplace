@@ -67,22 +67,20 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     //pesanan
     $routes->get('pesanan', 'PesananController::index');
-    $routes->get('create', 'PesananController::create');
-    $routes->post('pesanan/store', 'PesananController::store');
     $routes->get('pesanan/edit/(:num)', 'PesananController::edit/$1');
     $routes->post('pesanan/update/(:num)', 'PesananController::update/$1');
     $routes->get('pesanan/delete/(:num)', 'PesananController::delete/$1');
 
+    //payment
     $routes->match(['get', 'post'], 'payment/(:num)/(:any)/(:any)', 'PaymentGatewayController::index/$1/$2/$3');
     $routes->match(['get', 'post'], 'payment/update-status/(:num)', 'PaymentGatewayController::updateStatus/$1');
 
     //transaksi
     $routes->get('transaksi', 'TransaksiController::index');
+    $routes->get('transaksi/delete/(:num)', 'TransaksiController::delete/$1');
 
     //ulasan
     $routes->get('ulasan', 'UlasanController::index');
-    $routes->get('create-ulasan', 'UlasanController::create');
-    $routes->post('ulasan/store', 'UlasanController::store');
     $routes->get('ulasan/edit/(:num)', 'UlasanController::edit/$1');
     $routes->post('ulasan/update/(:num)', 'UlasanController::update/$1');
     $routes->get('ulasan/delete/(:num)', 'UlasanController::delete/$1');

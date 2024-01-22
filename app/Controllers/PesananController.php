@@ -25,44 +25,6 @@ class PesananController extends BaseController
 
         return view('pages/admin/pesanan/index', $data);
     }
-
-    public function create()
-    {
-        $userModel = new UserModel();
-        $biodataModel = new BiodataModel();
-        $listJasaModel = new ListJasaModel();
-
-        $data = [
-            'title' => 'Tambah Pesanan',
-            'active' => 'pesanan',
-            'users' => $userModel->findAll(),
-            'biodatas' => $biodataModel->findAll(),
-            'listJasas' => $listJasaModel->findAll(),
-        ];
-
-        return view('pages/admin/pesanan/create', $data);
-    }
-
-    public function store()
-    {
-        $pemesananModel = new PesananModel();
-
-        // Ambil data dari form
-        $data = [
-            'user_id' => $this->request->getPost('user_id'),
-            'biodata_id' => $this->request->getPost('biodata_id'),
-            'jasa_id' => $this->request->getPost('jasa_id'),
-            'alamat_pemesanan' => $this->request->getPost('alamat_pemesanan'),
-            'tanggal_pelaksanaan' => $this->request->getPost('tanggal_pelaksanaan'),
-            'no_telepon' => $this->request->getPost('no_telepon'),
-        ];
-
-        // Simpan data pesanan
-        $pemesananModel->insert($data);
-
-        return redirect()->to('/pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
-    }
-
     public function edit($id)
     {
         $pemesananModel = new PesananModel();
@@ -79,8 +41,9 @@ class PesananController extends BaseController
             'listJasas' => $listJasaModel->findAll(),
         ];
 
-        return view('pages/admin/pesanan/edit', $data);
+        return view('pages/admin/pesanan/edit-pesanan', $data);
     }
+
 
     public function update($id)
     {
@@ -99,7 +62,7 @@ class PesananController extends BaseController
         // Update data pesanan
         $pemesananModel->update($id, $data);
 
-        return redirect()->to('/pesanan')->with('success', 'Pesanan berhasil diperbarui.');
+        return redirect()->to('admin/pesanan')->with('success', 'Pesanan berhasil diperbarui.');
     }
 
     public function delete($id)
@@ -109,6 +72,6 @@ class PesananController extends BaseController
         // Hapus data pesanan
         $pemesananModel->delete($id);
 
-        return redirect()->to('/pesanan')->with('success', 'Pesanan berhasil dihapus.');
+        return redirect()->to('admin/pesanan')->with('success', 'Pesanan berhasil dihapus.');
     }
 }
