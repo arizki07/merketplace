@@ -118,6 +118,8 @@
                             </div>
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <br>
+                                <a href="/" class="btn btn-success d-grid w-100">Kembali</a>
                             </div>
                         </form>
 
