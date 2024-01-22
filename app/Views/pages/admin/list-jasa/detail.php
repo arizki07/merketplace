@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="jenis_jasa" class="form-label">Tanggal Pemesanan</label>
+                            <label for="jenis_jasa" class="form-label">Tanggal Pelaksanaan</label>
                             <input type="date" name="tanggal_pelaksanaan" class="form-control">
                         </div>
                         <div class="modal-footer">
@@ -121,8 +121,6 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
         </div>
     </div>

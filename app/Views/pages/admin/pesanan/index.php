@@ -6,29 +6,37 @@
     <div class="card">
         <div class="card-body">
             <div class="card-header">
-                <a type="submit" class="btn btn-primary" style="float: right;" href="<?= base_url('admin/create') ?>"><i class="fas fa-plus-circle me-2" style="font-size: 18px;"></i> Tambah Data Pesanan</a>
                 <h5>Data Pesanan</h5>
             </div>
             <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>No</th>
+                        <th>User ID</th>
+                        <th>Biodata ID</th>
+                        <th>Jasa ID</th>
+                        <th>Alamat Pemesanan</th>
+                        <th>Tanggal Pelaksanaan</th>
+                        <th>No Telepon</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
-                    </tr>
+                    <?php foreach ($pesanan as $key => $row) : ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td><?= $row['user_id'] ?></td>
+                            <td><?= $row['biodata_id'] ?></td>
+                            <td><?= $row['jasa_id'] ?></td>
+                            <td><?= $row['alamat_pemesanan'] ?></td>
+                            <td><?= $row['tanggal_pelaksanaan'] ?></td>
+                            <td><?= $row['no_telepon'] ?></td>
+                            <td>
+                                <a href="<?= site_url('admin/pesanan/edit/' . $row['id_pemesanan']) ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="<?= site_url('admin/pesanan/delete/' . $row['id_pemesanan']) ?>" class="btn btn-danger"><i class="fas fa-trash "></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
             </table>
         </div>
     </div>
