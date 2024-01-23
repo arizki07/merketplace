@@ -41,7 +41,11 @@
 
                         <div class="mb-3">
                             <label for="jenis_jasa" class="form-label">Jenis Jasa:</label>
-                            <input type="text" name="jenis_jasa" class="form-control" required>
+                            <select name="jenis_jasa" class="form-select">
+                                <option selected disabled>-- Pilih Jenis Jasa --</option>
+                                <option>Fotografi</option>
+                                <option>Videografi</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -71,7 +75,7 @@
 
                         <button type="submit" class="btn btn-primary">Add Jasa</button>
                         <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                        <a href="<?= base_url('list-jasa'); ?>" class="btn btn-secondary">Back to List</a>
+                        <a href="<?= base_url('admin/list-jasa'); ?>" class="btn btn-secondary">Back to List</a>
                     </form>
                 </div>
             </div>

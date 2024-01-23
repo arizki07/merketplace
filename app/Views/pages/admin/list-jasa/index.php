@@ -32,11 +32,11 @@
                                 <td><?= $jasa['nama_jasa']; ?></td>
                                 <td><?= $jasa['jenis_jasa']; ?></td>
                                 <td><?= 'Rp ' . number_format($jasa['harga_jasa'], 0, ',', '.'); ?></td>
-                                <td><?= $jasa['jumlah_foto']; ?></td>
+                                <td><?= $jasa['jumlah_foto']; ?> Pcs</td>
                                 <td><?= $jasa['lokasi']; ?></td>
                                 <td><?= $jasa['no_telepon']; ?></td>
                                 <td>
-                                    <img src="<?= base_url('assets/upload/testi/' . $jasa['testimoni_foto']); ?>" alt="Testimoni Foto" class="img-thumbnail w-75 h-75">
+                                    <img src="<?= base_url('assets/upload/testi/' . $jasa['testimoni_foto']); ?>" alt="Testimoni Foto" class="img-thumbnail" style="border-radius: 50%; width: 50px; height: 50px;">
                                 </td>
                                 <td>
                                     <a href="<?= base_url('admin/list-jasa/edit/' . $jasa['id_jasa']); ?>" class="btn btn-warning btn-sm rounded-pill btn-icon"><i class="fas fa-edit"></i></a>

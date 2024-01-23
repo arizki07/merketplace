@@ -46,6 +46,7 @@ class ListJasaController extends BaseController
             'nama_jasa' => $this->request->getVar('nama_jasa'),
             'biodata_id' => $this->request->getVar('biodata_id'),
             'user_id' => $this->request->getVar('user_id'),
+            'biodata_id' => $this->request->getVar('biodata_id'),
             'jenis_jasa' => $this->request->getVar('jenis_jasa'),
             'harga_jasa' => $this->request->getVar('harga_jasa'),
             'jumlah_foto' => $this->request->getVar('jumlah_foto'),

@@ -135,7 +135,7 @@
 <?php elseif (session()->get('role') === 'Pengguna') : ?>
 
 <?php elseif (session()->get('role') === 'Penyedia') : ?>
-    <?php if ((session('user_id_biodata') == '0')) : ?>
+    <?php if ((session('user_id_biodata') == '0' || session('status') == '0')) : ?>
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo mt-4">
                 <a href="<?= base_url('/dashboard') ?>" class="app-brand-link">

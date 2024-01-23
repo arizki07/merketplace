@@ -15,17 +15,37 @@
                 <div class="card-body">
                     <form action="<?= base_url('admin/list-jasa/update/' . $jasaData['id_jasa']) ?>" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
+                            <label class="form-label">Nama Jasa:</label>
+                            <select type="text" name="biodata_id" class="form-select" required>
+                                <option selected disabled>-- Pilih Biodata --</option>
+                                <?php foreach ($biodata as $bio) : ?>
+                                    <option value="<?= $bio['id_biodata'] ?>" <?= ($bio['id_biodata'] == $jasaData['biodata_id'] ? 'selected' : '') ?>><?= $bio['nama_lengkap'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nama Jasa:</label>
+                            <select type="text" name="user_id" class="form-select" required>
+                                <option selected disabled>-- Pilih User --</option>
+                                <?php foreach ($user as $us) : ?>
+                                    <option value="<?= $us['id_user'] ?>" <?= ($us['id_user'] == $jasaData['user_id'] ? 'selected' : '') ?>><?= $us['username'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="nama_jasa" class="form-label">Nama Jasa:</label>
                             <input type="text" name="nama_jasa" class="form-control" value="<?= $jasaData['nama_jasa'] ?>" required>
                         </div>
-                        <?php foreach($biodata as $bio) : ?>
-                                <?php if($biodata as $bio) : ?>
-                                <?php endif ?>
-                                <?php endforeach ?>
+
                         <div class="mb-3">
                             <label for="jenis_jasa" class="form-label">Jenis Jasa:</label>
-                            <input type="text" name="jenis_jasa" class="form-control" value="<?= $jasaData['jenis_jasa'] ?>" required>
-                        </div>`
+                            <select name="jenis_jasa" class="form-select">
+                                <option <?= ($jasaData['jenis_jasa'] == 'Fotografi') ? 'selected' : '' ?>>Fotografi</option>
+                                <option <?= ($jasaData['jenis_jasa'] == 'Videografi') ? 'selected' : '' ?>>Videografi</option>
+                            </select>
+                        </div>
 
                         <div class="mb-3">
                             <label for="harga_jasa" class="form-label">Harga Jasa:</label>
@@ -59,7 +79,7 @@
 
                         <button type="submit" class="btn btn-primary">Update Jasa</button>
                         <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                        <a href="<?= base_url('list-jasa'); ?>" class="btn btn-warning">Back to List</a>
+                        <a href="<?= base_url('admin/list-jasa'); ?>" class="btn btn-warning">Back to List</a>
                     </form>
                 </div>
             </div>

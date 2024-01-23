@@ -4,6 +4,8 @@
 <div class="container-xxl flex-grow-1 container">
     <h4 class="fw-bold py-3 mb-4 mt-4"><span class="text-muted fw-light"><?= $title ?> /</span>
         <?= session()->get('username') ?>
+        <?= session()->get('status') ?>
+        <?= session()->get('user_id_biodata') ?>
     </h4>
 
     <div class="row">
@@ -14,16 +16,13 @@
                 </div>
                 <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                     <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                        <img src="../../assets/img/avatars/14.png" alt="user image"
-                            class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
+                        <img src="../../assets/img/avatars/14.png" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
                     </div>
                     <div class="flex-grow-1 mt-3 mt-sm-5">
-                        <div
-                            class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+                        <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                             <div class="user-profile-info">
                                 <h4><?= $biodata['nama_lengkap'] ?? 'N/A' ?></h4>
-                                <ul
-                                    class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+                                <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                                     <li class="list-inline-item"><i class="ti ti-camera"></i> Fotografer</li>
                                     <li class="list-inline-item"><i class="ti ti-map-pin"></i> Indonesia</li>
                                     <li class="list-inline-item">
@@ -34,8 +33,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a href="<?= base_url('penyedia/profile/edit/' . session('user_id_biodata')) ?>"
-                                class="btn btn-primary">
+                            <a href="<?= base_url('penyedia/profile/edit/' . session('user_id_biodata')) ?>" class="btn btn-primary">
                                 <i class="ti ti-user-check me-1"></i>Edit
                             </a>
                         </div>
@@ -102,11 +100,7 @@
             <div class="card card-action mb-4">
                 <div class="card-header align-items-center">
                     <small class="card-text text-uppercase">Foto KTP</small>
-                    &nbsp;
-                    <?php if ($biodata['foto_ktp']) : ?>
-                    <img src="<?= base_url('assets/upload/ktp/' . $biodata['foto_ktp']); ?>" alt="Testimoni Foto"
-                        class="img-thumbnail w-50 h-50" width="100%">
-                    <?php endif; ?>
+                    <img src="<?= base_url('assets/upload/ktp/' . $biodata['foto_ktp']); ?>" alt="Testimoni Foto" class="img-thumbnail w-50 h-50" width="100%">
                 </div>
             </div>
             <!-- Foto KTP -->

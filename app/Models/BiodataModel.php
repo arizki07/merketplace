@@ -31,5 +31,4 @@ class BiodataModel extends Model
     {
         return $this->where('user_id', $id_user)->first();
     }
-
 }

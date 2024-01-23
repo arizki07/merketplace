@@ -20,7 +20,7 @@ class ProfileController extends BaseController
         $biodataModel = new BiodataModel();
 
         // Mengambil data biodata, email, dan status pengguna berdasarkan session('user_id_biodata')
-        $biodata = $biodataModel->getBiodataWithUser(session('user_id_biodata'));
+        $biodata = $biodataModel->getBiodataWithUser(session('user_id'));
 
         $data = [
             'biodata' => $biodata,
@@ -31,7 +31,8 @@ class ProfileController extends BaseController
         return view('pages/penyedia/profile/index', $data);
     }
 
-    public function create(){
+    public function create()
+    {
         $data = [
             'title'   => 'Tambah Profil',
             'active'  => 'profile',
@@ -61,9 +62,9 @@ class ProfileController extends BaseController
         }
 
         $biodataModel->insert($data);
-         session()->set('user_id_biodata', $this->request->getPost('user_id'));
+        session()->set('user_id_biodata', $this->request->getPost('user_id'));
 
-        session()->setFlashdata('success', 'Biodata berhasil ditambahkan!');
+        session()->setFlashdata('success', 'Biodata berhasil ditambahkan!.');
         return redirect()->to(site_url('/penyedia/profile'));
     }
 
@@ -107,6 +108,4 @@ class ProfileController extends BaseController
         session()->setFlashdata('success', 'Biodata berhasil diupdate!');
         return redirect()->to(site_url('penyedia/profile'));
     }
-
-
 }
