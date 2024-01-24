@@ -22,7 +22,13 @@
                     <?php foreach ($ulasans as $key => $ulasan) : ?>
                         <tr>
                             <td><?= $key + 1; ?></td>
-                            <td><?= $ulasan['user_id'] ?? 'N/A'; ?></td>
+                            <td>
+                                <?php foreach ($users as $bio) : ?>
+                                    <?php if ($ulasan['user_id'] == $bio['id_user']) : ?>
+                                        <?= $bio['username'] ?>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </td>
                             <td><?= $ulasan['pemesanan_id'] ?? 'N/A'; ?></td>
                             <td><?= $ulasan['ulasan'] ?? 'N/A'; ?></td>
                             <td>
