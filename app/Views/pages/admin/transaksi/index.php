@@ -25,8 +25,8 @@
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td>
-                                <?php foreach ($users as $key => $u): ?>
-                                    <?php if ($u['id_user'] == $transaksi['user_id']): ?>
+                                <?php foreach ($users as $key => $u) : ?>
+                                    <?php if ($u['id_user'] == $transaksi['user_id']) : ?>
                                         <?= $u['username'] ?>
                                     <?php endif ?>
                                 <?php endforeach ?>
@@ -48,24 +48,24 @@
 
 <?php foreach ($transaksis as $key => $transaksi) : ?>
     <div class="modal fade" id="delete-<?= $transaksi['id_transaksi'] ?>" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel1">Konfirmasi Penghapusan Transaksi</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Konfirmasi Penghapusan Transaksi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Yakin ingin menghapus data ini? Data akan secara permanen dihapus dari database.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <a type="button" href="<?= base_url('admin/transaksi/delete/' . $transaksi['id_transaksi']) ?>" class="btn btn-primary">Hapus</a>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <p>Yakin ingin menghapus data ini? Data akan secara permanen dihapus dari database.</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-              Close
-          </button>
-          <a type="button" href="<?= base_url('admin/transaksi/delete/' . $transaksi['id_transaksi']) ?>" class="btn btn-primary">Hapus</a>
-      </div>
-  </div>
-</div>
-</div>
+    </div>
 <?php endforeach ?>
 
 <?= $this->endSection() ?>
