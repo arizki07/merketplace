@@ -102,9 +102,47 @@ $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
     $routes->post('profile/store', 'Penyedia\ProfileController::store');
     $routes->get('profile/edit/(:num)', 'Penyedia\ProfileController::edit/$1');
     $routes->post('profile/update/(:num)', 'Penyedia\ProfileController::update/$1');
+
+    //productjasa
+    $routes->get('list-jasa', 'ListJasaController::index');
+    $routes->get('add-list-jasa', 'ListJasaController::add');
+    $routes->post('store-list-jasa', 'ListJasaController::store');
+    $routes->get('list-jasa/edit/(:segment)', 'ListJasaController::edit/$1');
+    $routes->post('list-jasa/update/(:num)', 'ListJasaController::update/$1');
+    $routes->get('list-jasa/delete/(:num)', 'ListJasaController::delete/$1');
+
+    //Detail jasa
+    $routes->get('detail', 'ListJasaController::detail');
+
+    //pesanan
+    $routes->get('pesanan', 'PesananController::index');
+    $routes->get('pesanan/edit/(:num)', 'PesananController::edit/$1');
+    $routes->post('pesanan/update/(:num)', 'PesananController::update/$1');
+    $routes->get('pesanan/delete/(:num)', 'PesananController::delete/$1');
+
+    //payment
+    $routes->match(['get', 'post'], 'payment/(:num)/(:any)/(:any)', 'PaymentGatewayController::index/$1/$2/$3');
+    $routes->match(['get', 'post'], 'payment/update-status/(:num)', 'PaymentGatewayController::updateStatus/$1');
+
+    //transaksi
+    $routes->get('transaksi', 'TransaksiController::index');
+    $routes->get('transaksi/delete/(:num)', 'TransaksiController::delete/$1');
+
+    //ulasan
+    $routes->get('ulasan', 'UlasanController::index');
+    $routes->get('ulasan/edit/(:num)', 'UlasanController::edit/$1');
+    $routes->post('ulasan/update/(:num)', 'UlasanController::update/$1');
+    $routes->get('ulasan/delete/(:num)', 'UlasanController::delete/$1');
 });
 
 $routes->group('pengguna', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('dashboard', 'DashboardController::pengguna');
+
+    // Profile
+    $routes->get('profile', 'Pengguna\ProfileController::index');
+    $routes->get('profile/create', 'Pengguna\ProfileController::create');
+    $routes->post('profile/store', 'Pengguna\ProfileController::store');
+    $routes->get('profile/edit/(:num)', 'Pengguna\ProfileController::edit/$1');
+    $routes->post('profile/update/(:num)', 'Pengguna\ProfileController::update/$1');
 });

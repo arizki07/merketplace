@@ -227,7 +227,7 @@
 
                 <li class="menu-item <?= ($active == 'detail') ? 'active' : '' ?>">
                     <a href="<?= base_url('penyedia/detail') ?>" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-list-detail"></i>
+                        <i class="menu-icon tf-icons ti ti-mail"></i>
                         <div>Detail Jasa</div>
                     </a>
                 </li>
@@ -248,8 +248,8 @@
                         <div>Transaksi</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="app-chat.html" class="menu-link">
+                <li class="menu-item <?= ($active == 'ulasan') ? 'active' : '' ?>">
+                    <a href="<?= base_url('penyedia/ulasan') ?>" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-messages"></i>
                         <div>Ulasan</div>
                     </a>
