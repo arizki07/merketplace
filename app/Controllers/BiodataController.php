@@ -13,17 +13,20 @@ class BiodataController extends BaseController
     {
         $biodataModel = new BiodataModel();
         $data['biodata'] = $biodataModel->findAll();
-        $data['title'] = 'Pengguna Jasa';
+        $userModel = new UserModel();
+        $data['user'] = $userModel->findAll();
+        $data['title'] = 'Data Pengguna Jasa';
         $data['active'] = 'pengguna';
-
         return view('pages/admin/biodata/pengguna/pengguna', $data);
     }
 
     public function add()
     {
+        $userModel = new UserModel();
         $data = [
             'title' => 'Add-Pengguna',
             'active' => 'pengguna',
+            'user' => $userModel->findAll()
         ];
         return view('pages/admin/biodata/pengguna/add-pengguna', $data);
     }
@@ -33,6 +36,7 @@ class BiodataController extends BaseController
         $biodataModel = new BiodataModel();
 
         $data = [
+            'user_id' => $this->request->getVar('user_id'),
             'nama_lengkap' => $this->request->getVar('nama_lengkap'),
             'no_telepon'        => $this->request->getVar('no_telepon'),
             'tanggal_lahir'          => $this->request->getVar('tanggal_lahir'),
@@ -115,6 +119,8 @@ class BiodataController extends BaseController
     {
         $biodataModel = new BiodataModel();
         $data['biodata'] = $biodataModel->findAll();
+        $userModel = new UserModel();
+        $data['user'] = $userModel->findAll();
         $data['title'] = 'Penyedia-Jasa';
         $data['active'] = 'penyedia';
         return view('pages/admin/biodata/penyedia/penyedia', $data);
@@ -122,17 +128,20 @@ class BiodataController extends BaseController
 
     public function add_penyedia()
     {
+        $userModel = new UserModel();
         $data = [
-            'title' => 'Add-Pengguna',
-            'active' => 'pengguna',
+            'title' => 'Add Penyedia Jasa',
+            'active' => 'penyedia',
+            'user' => $userModel->findAll()
         ];
-        return view('pages/admin/biodata/penyedia/add-penyedia');
+        return view('pages/admin/biodata/penyedia/add-penyedia', $data);
     }
 
     public function create_penyedia()
     {
         $biodataModel = new BiodataModel();
         $data = [
+            'user_id' => $this->request->getVar('user_id'),
             'nama_lengkap' => $this->request->getVar('nama_lengkap'),
             'no_telepon'        => $this->request->getVar('no_telepon'),
             'tanggal_lahir'          => $this->request->getVar('tanggal_lahir'),
@@ -156,7 +165,9 @@ class BiodataController extends BaseController
     public function edit_penyedia($id)
     {
         $biodataModel = new BiodataModel();
+        $userModel = new UserModel();
         $data['item'] = $biodataModel->find($id);
+        $data['user'] = $userModel->findAll;
 
         $data['title'] = 'edit Pengguna Jasa';
         $data['active'] = 'pengguna';

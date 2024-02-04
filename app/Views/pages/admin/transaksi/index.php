@@ -34,7 +34,21 @@
                             <td>ID-<?= $transaksi['order_id'] ?></td>
                             <td>Rp <?= number_format($transaksi['jumlah_transaksi'], 0, ',', '.'); ?></td>
                             <td><?= $transaksi['metode_pembayaran'] ?></td>
-                            <td><?= $transaksi['status_pembayaran'] ?></td>
+                            <td>
+                                <?php if ($transaksi['status_pembayaran'] == 'Success') : ?>
+                                    <span class="badge bg-label-success">
+                                        <?= $transaksi['status_pembayaran'] ?>
+                                    </span>
+                                <?php elseif ($transaksi['status_pembayaran'] == 'Pending') : ?>
+                                    <span class="badge bg-label-warning">
+                                        <?= $transaksi['status_pembayaran'] ?>
+                                    </span>
+                                <?php else : ?>
+                                    <span class="badge bg-label-danger">
+                                        <?= $transaksi['status_pembayaran'] ?>
+                                    </span>
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <a href="#" class="btn btn-danger btn-sm rounded-pill btn-icon" data-bs-toggle="modal" data-bs-target="#delete-<?= $transaksi['id_transaksi'] ?>"><i class="fas fa-trash"></i></a>
                             </td>

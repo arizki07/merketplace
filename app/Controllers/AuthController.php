@@ -55,25 +55,24 @@ class AuthController extends BaseController
                     $userModel = new UserModel();
                     $biodataModel = new BiodataModel();
 
-                    // Mengambil data user dari UserModel
                     $userData = $userModel->getUserById($user['id_user']);
 
                     if (!empty($userData)) {
-                        // Mengambil data biodata berdasarkan id_user dari BiodataModel
                         $biodataData = $biodataModel->getBiodataByUserId($user['id_user']);
 
                         if (!empty($biodataData)) {
-                            // Jika id_user ada di BiodataModel
-                            $session->set('user_id', $biodataData['user_id']);
+                            $session->set('user_id', $biodataData['id_biodata']);
+                            $session->set('user_id_biodata', $userData['id_user']);
+                            $session->set('role', $userData['role']);
                             return redirect()->to('penyedia/dashboard');
                         } else {
-                            // Jika id_user tidak ada di BiodataModel
                             $session->set('user_id_biodata', $userData['id_user']);
+                            $session->set('nama', $userData['username']);
+                            $session->set('email', $userData['email']);
                             $session->set('status', $userData['status']) ?? 0;
                             return redirect()->to('penyedia/profile/create');
                         }
                     } else {
-                        // Handle jika user tidak ditemukan di UserModel
                         return redirect()->to('login')->with('error', 'User tidak ditemukan.');
                     }
                     break;

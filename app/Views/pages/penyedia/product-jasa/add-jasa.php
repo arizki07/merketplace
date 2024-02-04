@@ -14,25 +14,8 @@
                 </div>
                 <div class="card-body">
                     <form action="<?= base_url('penyedia/store-list-jasa') ?>" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label class="form-label">Nama Jasa:</label>
-                            <select type="text" name="biodata_id" class="form-select" required>
-                                <option selected disabled>-- Pilih Biodata --</option>
-                                <?php foreach ($biodata as $bio) : ?>
-                                    <option value="<?= $bio['id_biodata'] ?>"><?= $bio['nama_lengkap'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Nama Jasa:</label>
-                            <select type="text" name="user_id" class="form-select" required>
-                                <option selected disabled>-- Pilih User --</option>
-                                <?php foreach ($user as $us) : ?>
-                                    <option value="<?= $us['id_user'] ?>"><?= $us['username'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
+                        <input type="hidden" name="user_id" value="<?= session('user_id_biodata') ?>" class="form-control" required>
+                        <input type="hidden" name="biodata_id" value="<?= session('user_id') ?>" class="form-control" required>
 
                         <div class="mb-3">
                             <label for="nama_jasa" class="form-label">Nama Jasa:</label>

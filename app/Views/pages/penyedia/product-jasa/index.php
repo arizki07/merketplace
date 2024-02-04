@@ -18,7 +18,7 @@
                             <th>Nama Jasa</th>
                             <th>Jenis Jasa</th>
                             <th>Harga Jasa</th>
-                            <th>Jumlah Foto</th>
+                            <th>Jumlah Take</th>
                             <th>Lokasi</th>
                             <th>No. Telepon</th>
                             <th>Testimoni Foto</th>
@@ -27,22 +27,24 @@
                     </thead>
                     <tbody>
                         <?php foreach ($jasaData as $key => $jasa) : ?>
-                            <tr>
-                                <td><?= $key + 1; ?></td>
-                                <td><?= $jasa['nama_jasa']; ?></td>
-                                <td><?= $jasa['jenis_jasa']; ?></td>
-                                <td><?= 'Rp ' . number_format($jasa['harga_jasa'], 0, ',', '.'); ?></td>
-                                <td><?= $jasa['jumlah_foto']; ?> Pcs</td>
-                                <td><?= $jasa['lokasi']; ?></td>
-                                <td><?= $jasa['no_telepon']; ?></td>
-                                <td>
-                                    <img src="<?= base_url('assets/upload/testi/' . $jasa['testimoni_foto']); ?>" alt="Testimoni Foto" class="img-thumbnail" style="border-radius: 50%; width: 50px; height: 50px;">
-                                </td>
-                                <td>
-                                    <a href="<?= base_url('admin/list-jasa/edit/' . $jasa['id_jasa']); ?>" class="btn btn-warning btn-sm rounded-pill btn-icon"><i class="fas fa-edit"></i></a>
-                                    <a href="<?= base_url('admin/list-jasa/delete/' . $jasa['id_jasa']); ?>" class="btn btn-danger btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
+                            <?php if ($jasa['user_id'] == session('user_id_biodata')) : ?>
+                                <tr>
+                                    <td><?= $key + 1; ?></td>
+                                    <td><?= $jasa['nama_jasa']; ?></td>
+                                    <td><?= $jasa['jenis_jasa']; ?></td>
+                                    <td><?= 'Rp ' . number_format($jasa['harga_jasa'], 0, ',', '.'); ?></td>
+                                    <td><?= $jasa['jumlah_foto']; ?> Take</td>
+                                    <td><?= $jasa['lokasi']; ?></td>
+                                    <td><?= $jasa['no_telepon']; ?></td>
+                                    <td>
+                                        <img src="<?= base_url('assets/upload/testi/' . $jasa['testimoni_foto']); ?>" alt="Testimoni Foto" class="img-thumbnail" style="border-radius: 50%; width: 50px; height: 50px;">
+                                    </td>
+                                    <td>
+                                        <a href="<?= base_url('admin/list-jasa/edit/' . $jasa['id_jasa']); ?>" class="btn btn-warning btn-sm rounded-pill btn-icon"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('admin/list-jasa/delete/' . $jasa['id_jasa']); ?>" class="btn btn-danger btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            <?php endif ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

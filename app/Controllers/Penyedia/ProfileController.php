@@ -20,7 +20,7 @@ class ProfileController extends BaseController
         $biodataModel = new BiodataModel();
 
         // Mengambil data biodata, email, dan status pengguna berdasarkan session('user_id_biodata')
-        $biodata = $biodataModel->getBiodataWithUser(session('user_id'));
+        $biodata = $biodataModel->getBiodataWithUser(session('user_id_biodata'));
 
         $data = [
             'biodata' => $biodata,

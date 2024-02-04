@@ -40,11 +40,11 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     //Biodata
     $routes->get('penyedia-jasa', 'BiodataController::penyedia');
-    $routes->get('add-penyedia', 'BiodataController::add');
-    $routes->post('create-penyedia', 'BiodataController::create');
-    $routes->get('penyedia-jasa/edit/(:segment)', 'BiodataController::edit/$1');
-    $routes->post('penyedia-jasa/update/(:num)', 'BiodataController::update/$1');
-    $routes->get('penyedia-jasa/delete/(:num)', 'BiodataController::delete/$1');
+    $routes->get('add-penyedia', 'BiodataController::add_penyedia');
+    $routes->post('create-penyedia', 'BiodataController::create_penyedia');
+    $routes->get('penyedia-jasa/edit/(:segment)', 'BiodataController::edit_penyedia/$1');
+    $routes->post('penyedia-jasa/update/(:num)', 'BiodataController::update_penyedia/$1');
+    $routes->get('penyedia-jasa/delete/(:num)', 'BiodataController::delete_penyedia/$1');
 
     //pengguna
     $routes->get('pengguna-jasa', 'BiodataController::pengguna');
@@ -137,7 +137,7 @@ $routes->group('penyedia', ['filter' => 'auth'], function ($routes) {
 
 $routes->group('pengguna', ['filter' => 'auth'], function ($routes) {
 
-    $routes->get('dashboard', 'DashboardController::pengguna');
+    $routes->get('dashboard', 'DashboardController::index');
 
     // Profile
     $routes->get('profile', 'Pengguna\ProfileController::index');

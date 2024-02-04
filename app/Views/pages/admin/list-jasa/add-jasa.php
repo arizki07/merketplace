@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <form action="<?= base_url('admin/store-list-jasa') ?>" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label class="form-label">Nama Jasa:</label>
+                            <label class="form-label">Nama Pemilik Jasa</label>
                             <select type="text" name="biodata_id" class="form-select" required>
                                 <option selected disabled>-- Pilih Biodata --</option>
                                 <?php foreach ($biodata as $bio) : ?>
@@ -25,17 +25,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Nama Jasa:</label>
+                            <label class="form-label">Akun Pemilik Jasa</label>
                             <select type="text" name="user_id" class="form-select" required>
                                 <option selected disabled>-- Pilih User --</option>
                                 <?php foreach ($user as $us) : ?>
+                                <?php if ($us['role'] == 'Penyedia') : ?>
                                     <option value="<?= $us['id_user'] ?>"><?= $us['username'] ?></option>
+                                <?php endif ?>
                                 <?php endforeach ?>
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="nama_jasa" class="form-label">Nama Jasa:</label>
+                            <label for="nama_jasa" class="form-label">Judul Jasa</label>
                             <input type="text" name="nama_jasa" class="form-control" required>
                         </div>
 

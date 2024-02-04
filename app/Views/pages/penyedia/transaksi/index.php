@@ -17,28 +17,41 @@
                         <th>Jumlah Transaksi</th>
                         <th>Metode Pembayaran</th>
                         <th>Status Pembayaran</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $nomor = 1; ?>
                     <?php foreach ($transaksis as $key => $transaksi) : ?>
-                        <tr>
-                            <td><?= $key + 1 ?></td>
-                            <td>
-                                <?php foreach ($users as $key => $u) : ?>
-                                    <?php if ($u['id_user'] == $transaksi['user_id']) : ?>
-                                        <?= $u['username'] ?>
-                                    <?php endif ?>
-                                <?php endforeach ?>
-                            </td>
-                            <td>ID-<?= $transaksi['order_id'] ?></td>
-                            <td>Rp <?= number_format($transaksi['jumlah_transaksi'], 0, ',', '.'); ?></td>
-                            <td><?= $transaksi['metode_pembayaran'] ?></td>
-                            <td><?= $transaksi['status_pembayaran'] ?></td>
-                            <td>
-                                <a href="#" class="btn btn-danger btn-sm rounded-pill btn-icon" data-bs-toggle="modal" data-bs-target="#delete-<?= $transaksi['id_transaksi'] ?>"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php if ($transaksi['user_id'] == session('user_id_biodata')) : ?>
+                            <tr>
+                                <td><?= $nomor++; ?></td>
+                                <td>
+                                    <?php foreach ($users as $key => $u) : ?>
+                                        <?php if ($u['id_user'] == $transaksi['user_id']) : ?>
+                                            <?= $u['username'] ?>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                </td>
+                                <td>ID-<?= $transaksi['order_id'] ?></td>
+                                <td>Rp <?= number_format($transaksi['jumlah_transaksi'], 0, ',', '.'); ?></td>
+                                <td><?= $transaksi['metode_pembayaran'] ?></td>
+                                <td>
+                                    <?php if ($transaksi['status_pembayaran'] == 'Success') : ?>
+                                        <span class="badge bg-label-success">
+                                            <?= $transaksi['status_pembayaran'] ?>
+                                        </span>
+                                    <?php elseif ($transaksi['status_pembayaran'] == 'Pending') : ?>
+                                        <span class="badge bg-label-warning">
+                                            <?= $transaksi['status_pembayaran'] ?>
+                                        </span>
+                                    <?php else : ?>
+                                        <span class="badge bg-label-danger">
+                                            <?= $transaksi['status_pembayaran'] ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif ?>
                     <?php endforeach ?>
                 </tbody>
             </table>

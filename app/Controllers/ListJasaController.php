@@ -14,29 +14,55 @@ class ListJasaController extends BaseController
     {
         $jasaModel = new ListJasaModel();
         $data['jasaData'] = $jasaModel->findAll();
-        $data = [
-            'title' => 'List-Jasa',
-            'active' => 'jasa',
-            'jasaData' => $data['jasaData'],
-        ];
-        return view('pages/admin/list-jasa/index', $data);
+
+        if (session('role') == 'Admin') {
+            $data = [
+                'title' => 'List-Jasa',
+                'active' => 'jasa',
+                'jasaData' => $data['jasaData'],
+            ];
+            return view('pages/admin/list-jasa/index', $data);
+        } elseif (session('role') == 'Penyedia') {
+            $data = [
+                'title' => 'List Penyedia Jasa',
+                'active' => 'jasa',
+                'jasaData' => $data['jasaData'],
+            ];
+            return view('pages/penyedia/product-jasa/index', $data);
+        } else {
+            $data = [
+                'title' => 'List Penyedia Jasa',
+                'active' => 'jasa',
+                'jasaData' => $data['jasaData'],
+            ];
+            return view('pages/pengguna/product-jasa/index', $data);
+        }
     }
 
     public function add()
     {
         $biodataModel = new BiodataModel();
         $userModel = new UserModel();
-
         $user = $userModel->findAll();
         $biodata = $biodataModel->findAll();
 
-        $data = [
-            'title' => 'add-List-Jasa',
-            'active' => 'jasa',
-            'user' => $user,
-            'biodata' => $biodata,
-        ];
-        return view('pages/admin/list-jasa/add-jasa', $data);
+        if (session('role') == 'Admin') {
+            $data = [
+                'title' => 'add-List-Jasa',
+                'active' => 'jasa',
+                'user' => $user,
+                'biodata' => $biodata,
+            ];
+            return view('pages/admin/list-jasa/add-jasa', $data);
+        } else {
+            $data = [
+                'title' => 'Add List Jasa',
+                'active' => 'jasa',
+                'user' => $user,
+                'biodata' => $biodata,
+            ];
+            return view('pages/penyedia/product-jasa/add-jasa', $data);
+        }
     }
 
     public function store()
@@ -157,6 +183,12 @@ class ListJasaController extends BaseController
             'user'  => $user,
         ];
 
-        return view('pages/admin/list-jasa/detail', $data);
+        if (session('role') == 'Admin') {
+            return view('pages/admin/list-jasa/detail', $data);
+        } elseif (session('role') == 'Penyedia') {
+            return view('pages/penyedia/product-jasa/detail', $data);
+        } else {
+            return view('pages/pengguna/product-jasa/index', $data);
+        }
     }
 }

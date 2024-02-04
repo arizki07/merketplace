@@ -29,7 +29,9 @@
                             <select type="text" name="user_id" class="form-select" required>
                                 <option selected disabled>-- Pilih User --</option>
                                 <?php foreach ($user as $us) : ?>
+                                <?php if ($us['role'] == 'Penyedia') : ?>
                                     <option value="<?= $us['id_user'] ?>" <?= ($us['id_user'] == $jasaData['user_id'] ? 'selected' : '') ?>><?= $us['username'] ?></option>
+                                <?php endif ?>
                                 <?php endforeach ?>
                             </select>
                         </div>

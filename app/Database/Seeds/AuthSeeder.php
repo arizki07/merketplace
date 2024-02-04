@@ -21,16 +21,16 @@ class AuthSeeder extends Seeder
 
         $userData = [
             [
-                'username' => 'Pengguna Jasa',
+                'username' => 'M Aldi Ajah',
                 'email' => 'ajaa0457@gmail.com',
-                'status' => 'Active',
+                'status' => '0',
                 'role' => 'Pengguna',
                 'password' => password_hash('Pengguna.123', PASSWORD_DEFAULT)
             ],
             [
-                'username' => 'Penyedia Jasa',
-                'email' => 'ajaa0457@gmail.com',
-                'status' => 'Active',
+                'username' => 'Riko Simanjuntak',
+                'email' => 'mosyahicenter@gmail.com',
+                'status' => '0',
                 'role' => 'Penyedia',
                 'password' => password_hash('Penyedia.123', PASSWORD_DEFAULT)
             ],

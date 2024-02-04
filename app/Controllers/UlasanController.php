@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\PesananModel;
 use App\Models\UlasanModel;
+use App\Models\ListJasaModel;
 
 class UlasanController extends BaseController
 {
@@ -22,15 +23,25 @@ class UlasanController extends BaseController
         $pesananModel = new PesananModel();
         $data['pesanans'] = $pesananModel->findAll();
 
+        $jasaModel = new ListJasaModel();
+        $data['jasaa'] = $jasaModel->findAll();
+
         $data = [
             'title' => 'Ulasan',
             'active' => 'ulasan',
             'ulasans' => $data['ulasans'],
             'users' => $data['users'],
             'pesanans' => $data['pesanans'],
+            'jasa' => $data['jasaa'],
         ];
 
-        return view('pages/admin/ulasan/index', $data);
+        if (session('role') == 'Admin') {
+            return view('pages/admin/ulasan/index', $data);
+        } elseif (session('role') == 'Penyedia') {
+            return view('pages/penyedia/ulasan/index', $data);
+        } else {
+            return view('pages/admin/ulasan/index', $data);
+        }
     }
 
     public function delete($id)

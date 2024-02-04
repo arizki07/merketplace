@@ -18,7 +18,7 @@
                             <th>Nama Jasa</th>
                             <th>Jenis Jasa</th>
                             <th>Harga Jasa</th>
-                            <th>Jumlah Foto</th>
+                            <th>Jumlah Take</th>
                             <th>Lokasi</th>
                             <th>No. Telepon</th>
                             <th>Testimoni Foto</th>
@@ -32,7 +32,7 @@
                                 <td><?= $jasa['nama_jasa']; ?></td>
                                 <td><?= $jasa['jenis_jasa']; ?></td>
                                 <td><?= 'Rp ' . number_format($jasa['harga_jasa'], 0, ',', '.'); ?></td>
-                                <td><?= $jasa['jumlah_foto']; ?> Pcs</td>
+                                <td><?= $jasa['jumlah_foto']; ?> Take</td>
                                 <td><?= $jasa['lokasi']; ?></td>
                                 <td><?= $jasa['no_telepon']; ?></td>
                                 <td>

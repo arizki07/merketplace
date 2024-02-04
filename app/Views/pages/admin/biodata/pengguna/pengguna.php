@@ -25,21 +25,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($biodata as $index => $item) : ?>
-                            <tr>
-                                <td><?= $index + 1 ?></td>
-                                <td><?= $item['nama_lengkap'] ?></td>
-                                <td><?= $item['no_telepon'] ?></td>
-                                <td><?= $item['tanggal_lahir'] ?></td>
-                                <td><?= $item['alamat'] ?></td>
-                                <td><?= $item['nomor_ktp'] ?></td>
-                                <td><img src="<?= base_url('./assets/upload/ktp/' . $item['foto_ktp']) ?>" alt="KTP Photo" style="max-width: 100px;"></td>
-                                <td>
-                                    <a href="<?= base_url('admin/pengguna-jasa/edit/' . $item['id_biodata']) ?>" class="btn btn-warning  btn-sm rounded-pill btn-icon"><i class="fas fa-edit"></i></a>
-                                    <a href="<?= base_url('admin/pengguna-jasa/delete/' . $item['id_biodata']) ?>" id="deleteButton" class="btn btn-danger  btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
-
-                                </td>
-                            </tr>
+                        <?php $i = 1; ?>
+                        <?php foreach ($user as $index_user => $item_user) : ?>
+                            <?php foreach ($biodata as $index_bio => $bio) : ?>
+                                <?php if ($item_user['id_user'] == $bio['user_id']) : ?>
+                                    <?php if ($item_user['role'] == 'Pengguna') : ?>
+                                        <tr>
+                                            <td><?= $i; ?></td>
+                                            <td><?= $bio['nama_lengkap'] ?></td>
+                                            <td><?= $bio['no_telepon'] ?></td>
+                                            <td><?= $bio['tanggal_lahir'] ?></td>
+                                            <td><?= $bio['alamat'] ?></td>
+                                            <td><?= $bio['nomor_ktp'] ?></td>
+                                            <td><img src="<?= base_url('./assets/upload/ktp/' . $bio['foto_ktp']) ?>" alt="KTP Photo" style="max-width: 100px;"></td>
+                                            <td>
+                                                <a href="<?= base_url('admin/penyedia-jasa/edit/' . $bio['id_biodata']) ?>" class="btn btn-warning btn-sm rounded-pill btn-icon"><i class="fas fa-edit"></i></a>
+                                                <a href="<?= base_url('admin/penyedia-jasa/delete/' . $bio['id_biodata']) ?>" id="deleteButton" class="btn btn-danger btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endif ?>
+                                <?php endif ?>
+                            <?php endforeach ?>
                         <?php endforeach ?>
                     </tbody>
                 </table>

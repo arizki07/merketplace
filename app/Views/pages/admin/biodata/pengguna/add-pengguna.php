@@ -15,8 +15,19 @@
                 <div class="card-body">
                     <form method="post" action="<?= site_url('admin/create-pengguna') ?>" enctype="multipart/form-data">
                         <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">User Account</label>
+                            <select name="user_id" class="form-select">
+                                <option selected disabled>-- Pilih User Account --</option>
+                                <?php foreach ($user as $us) : ?>
+                                    <?php if ($us['role'] == 'Pengguna') : ?>
+                                        <option value="<?= $us['id_user'] ?>"><?= $us['username'] ?></option>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Full Name</label>
-                            <input type="text" name="nama_lengkap" class="form-control" id="basic-default-fullname" required />
+                            <input type="text" name="nama_lengkap" class="form-control" id="basic-default-fullname" placeholder="Confirm Your Full Name" required />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-phone">Phone No</label>

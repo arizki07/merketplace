@@ -2,10 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Profile</h4>
-
-    <?= session()->get('status') ?>
-    <?= session()->get('user_id_biodata') ?>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add Profile</h4>
 
     <!-- Basic Layout -->
     <div class="row">
@@ -15,11 +12,7 @@
                     <form method="post" action="<?= site_url('penyedia/profile/store') ?>" enctype="multipart/form-data">
 
                         <input type="hidden" name="user_id" value="<?= session()->get('user_id_biodata') ?>">
-
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Full Name</label>
-                            <input type="text" name="nama_lengkap" class="form-control" id="basic-default-fullname" required />
-                        </div>
+                        <input type="hidden" name="nama_lengkap" id="basic-default-phone" class="form-control phone-mask" value="<?= session('nama') ?>" required />
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-phone">Phone No</label>
                             <input type="text" name="no_telepon" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941" required />

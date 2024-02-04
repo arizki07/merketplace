@@ -7,6 +7,7 @@ use App\Models\PesananModel;
 use App\Models\UserModel;
 use App\Models\BiodataModel;
 use App\Models\ListJasaModel;
+use App\Models\TransaksiModel;
 
 class PesananController extends BaseController
 {
@@ -15,9 +16,11 @@ class PesananController extends BaseController
         $pemesananModel = new PesananModel();
         $biodataModel = new BiodataModel();
         $jasaModel = new ListJasaModel();
+        $transaksiModel = new TransaksiModel();
         $jasa = $jasaModel->findAll();
         $pesanan = $pemesananModel->findAll();
         $biodata = $biodataModel->findAll();
+        $transaksi = $transaksiModel->findAll();
 
         $data = [
             'title' => 'Pesanan',
@@ -25,9 +28,16 @@ class PesananController extends BaseController
             'pesanan' => $pesanan,
             'biodata' => $biodata,
             'jasa' => $jasa,
+            'transaksi' => $transaksi,
         ];
 
-        return view('pages/admin/pesanan/index', $data);
+        if (session('role') == 'Admin') {
+            return view('pages/admin/pesanan/index', $data);
+        } elseif (session('role') == 'Penyedia') {
+            return view('pages/penyedia/pesanan/index', $data);
+        } else {
+            return view('pages/penyedia/pesanan/index', $data);
+        }
     }
     public function edit($id)
     {

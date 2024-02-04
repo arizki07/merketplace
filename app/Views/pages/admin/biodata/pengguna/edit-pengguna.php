@@ -15,6 +15,17 @@
                 <div class="card-body">
                     <form method="post" action="<?= base_url('admin/pengguna-jasa/update/' . $item['id_biodata']) ?>" enctype="multipart/form-data">
                         <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">User Account</label>
+                            <select name="user_id" class="form-select">
+                                <option selected disabled>-- Pilih User Account --</option>
+                                <?php foreach ($user as $us) : ?>
+                                    <?php if ($us['role'] == 'Pengguna') : ?>
+                                        <option value="<?= $us['id_user'] ?>" <?= ($sus['id_user'] == $item['user_id'] ? 'selected' : '') ?>><?= $us['username'] ?></option>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Full Name</label>
                             <input type="text" name="nama_lengkap" class="form-control" id="basic-default-fullname" value="<?= $item['nama_lengkap'] ?>" required />
                         </div>

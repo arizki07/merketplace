@@ -39,70 +39,132 @@ class DashboardController extends BaseController
 
     public function index()
     {
-        $userCount = $this->userModel->countAll();
-        $biodataCount = $this->biodataModel->countAll();
-        $biodata = $this->biodataModel->findAll();
-        $penyediaCount = $this->biodataModel
-        ->join('tbl_user', 'tbl_user.id_user = tb_biodata.user_id')
-        ->where('tbl_user.role', 'Penyedia')
-        ->countAllResults();
+        if (session('role') == 'Admin') {
+            $userCount = $this->userModel->countAll();
+            $biodataCount = $this->biodataModel->countAll();
+            $biodata = $this->biodataModel->findAll();
+            $penyediaCount = $this->biodataModel
+                ->join('tbl_user', 'tbl_user.id_user = tb_biodata.user_id')
+                ->where('tbl_user.role', 'Penyedia')
+                ->countAllResults();
 
-        $penggunaCount = $this->biodataModel
-        ->join('tbl_user', 'tbl_user.id_user = tb_biodata.user_id')
-        ->where('tbl_user.role', 'Pengguna')
-        ->countAllResults();
+            $penggunaCount = $this->biodataModel
+                ->join('tbl_user', 'tbl_user.id_user = tb_biodata.user_id')
+                ->where('tbl_user.role', 'Pengguna')
+                ->countAllResults();
 
-        $googleCount = $this->googleModel->countAll();
-        $listjasaCount = $this->listjasaModel->countAll();
-        $jasa = $this->listjasaModel->findAll();
-        $otpCount = $this->otpModel->countAll();
-        $pesananCount = $this->pesananModel->countAll();
-        $pesanan = $this->pesananModel->findAll();
+            $googleCount = $this->googleModel->countAll();
+            $listjasaCount = $this->listjasaModel->countAll();
+            $jasa = $this->listjasaModel->findAll();
+            $otpCount = $this->otpModel->countAll();
+            $pesananCount = $this->pesananModel->countAll();
+            $pesanan = $this->pesananModel->findAll();
 
-        $transaksiCount = $this->transaksiModel->countAll();
-        $transaksi = $this->transaksiModel->findAll();
-        $successCount = $this->transaksiModel->where('status_pembayaran', 'Success')->countAllResults();
-        $failedPendingCount = $this->transaksiModel
-        ->whereIn('status_pembayaran', ['Failed', 'Pending'])
-        ->countAllResults();
+            $transaksiCount = $this->transaksiModel->countAll();
+            $transaksi = $this->transaksiModel->findAll();
+            $successCount = $this->transaksiModel->where('status_pembayaran', 'Success')->countAllResults();
+            $failedPendingCount = $this->transaksiModel
+                ->whereIn('status_pembayaran', ['Failed', 'Pending'])
+                ->countAllResults();
 
-        $totalJumlahTransaksi = $this->transaksiModel->selectSum('jumlah_transaksi')->get()->getRow()->jumlah_transaksi;
-        $formattedTotalJumlahTransaksi = 'Rp ' . number_format($totalJumlahTransaksi, 0, ',', '.');
-        $ulasanCount = $this->ulasanModel->countAll();
-        $ulasan = $this->ulasanModel->findAll();
+            $totalJumlahTransaksi = $this->transaksiModel->selectSum('jumlah_transaksi')->get()->getRow()->jumlah_transaksi;
+            $formattedTotalJumlahTransaksi = 'Rp ' . number_format($totalJumlahTransaksi, 0, ',', '.');
+            $ulasanCount = $this->ulasanModel->countAll();
+            $ulasan = $this->ulasanModel->findAll();
 
-        $data = [
-            'title' => 'Dashboard',
-            'active' => 'dashboard',
-            'userCount' => $userCount,
-            'biodataCount' => $biodataCount,
-            'biodata' => $biodata,
-            'penyediaCount' => $penyediaCount,
-            'penggunaCount' => $penggunaCount,
-            'googleCount' => $googleCount,
-            'listjasaCount' => $listjasaCount,
-            'jasa' => $jasa,
-            'otpCount' => $otpCount,
-            'pesananCount' => $pesananCount,
-            'pesanan' => $pesanan,
-            'transaksiCount' => $transaksiCount,
-            'transaksi' => $transaksi,
-            'successCount' => $successCount,
-            'failedPendingCount' => $failedPendingCount,
-            'ulasanCount' => $ulasanCount,
-            'ulasan' => $ulasan,
-            'formattedTotalJumlahTransaksi' => $formattedTotalJumlahTransaksi,
-        ];
+            $data = [
+                'title' => 'Dashboard',
+                'active' => 'dashboard',
+                'userCount' => $userCount,
+                'biodataCount' => $biodataCount,
+                'biodata' => $biodata,
+                'penyediaCount' => $penyediaCount,
+                'penggunaCount' => $penggunaCount,
+                'googleCount' => $googleCount,
+                'listjasaCount' => $listjasaCount,
+                'jasa' => $jasa,
+                'otpCount' => $otpCount,
+                'pesananCount' => $pesananCount,
+                'pesanan' => $pesanan,
+                'transaksiCount' => $transaksiCount,
+                'transaksi' => $transaksi,
+                'successCount' => $successCount,
+                'failedPendingCount' => $failedPendingCount,
+                'ulasanCount' => $ulasanCount,
+                'ulasan' => $ulasan,
+                'formattedTotalJumlahTransaksi' => $formattedTotalJumlahTransaksi,
+            ];
+            return view('pages/dashboard', $data);
+        } elseif (session('role') == 'Penyedia') {
+            $userCount = $this->userModel->countAll();
+            $biodataCount = $this->biodataModel->countAll();
+            $biodata = $this->biodataModel->findAll();
+            $penyediaCount = $this->biodataModel
+                ->join('tbl_user', 'tbl_user.id_user = tb_biodata.user_id')
+                ->where('tbl_user.role', 'Penyedia')
+                ->countAllResults();
 
-        return view('pages/dashboard', $data);
-    }
+            $penggunaCount = $this->biodataModel
+                ->join('tbl_user', 'tbl_user.id_user = tb_biodata.user_id')
+                ->where('tbl_user.role', 'Pengguna')
+                ->countAllResults();
 
-    public function pengguna()
-    {
-        $data = [
-            'title' => 'Dashboard',
-            'active' => 'dashboard',
-        ];
-        return view('pages/pengguna/index', $data);
+            $googleCount = $this->googleModel->countAll();
+            $listjasaCount = $this->listjasaModel->countAll();
+            $jasa = $this->listjasaModel->findAll();
+            $otpCount = $this->otpModel->countAll();
+            $pesananCount = $this->pesananModel->countAll();
+            $pesanan = $this->pesananModel->findAll();
+
+            $transaksiCount = $this->transaksiModel->countAll();
+            $transaksi = $this->transaksiModel->findAll();
+
+            $user_id_biodata = session('user_id_biodata');
+            $successCount = $this->transaksiModel
+                ->where('user_id', $user_id_biodata)
+                ->where('status_pembayaran', 'Success')
+                ->countAllResults();
+
+            $failedPendingCount = $this->transaksiModel
+                ->where('user_id', $user_id_biodata)
+                ->whereIn('status_pembayaran', ['Failed', 'Pending'])
+                ->countAllResults();
+            $totalJumlahTransaksi = $this->transaksiModel
+                ->where('user_id', $user_id_biodata)
+                ->selectSum('jumlah_transaksi')
+                ->get()
+                ->getRow()
+                ->jumlah_transaksi;
+
+            $formattedTotalJumlahTransaksi = 'Rp ' . number_format($totalJumlahTransaksi, 0, ',', '.');
+            $ulasanCount = $this->ulasanModel->countAll();
+            $ulasan = $this->ulasanModel->findAll();
+
+            $data = [
+                'title' => 'Dashboard',
+                'active' => 'dashboard',
+                'userCount' => $userCount,
+                'biodataCount' => $biodataCount,
+                'biodata' => $biodata,
+                'penyediaCount' => $penyediaCount,
+                'penggunaCount' => $penggunaCount,
+                'googleCount' => $googleCount,
+                'listjasaCount' => $listjasaCount,
+                'jasa' => $jasa,
+                'otpCount' => $otpCount,
+                'pesananCount' => $pesananCount,
+                'pesanan' => $pesanan,
+                'transaksiCount' => $transaksiCount,
+                'transaksi' => $transaksi,
+                'successCount' => $successCount,
+                'failedPendingCount' => $failedPendingCount,
+                'ulasanCount' => $ulasanCount,
+                'ulasan' => $ulasan,
+                'formattedTotalJumlahTransaksi' => $formattedTotalJumlahTransaksi,
+            ];
+            return view('pages/dashboard', $data);
+        } else {
+            return view('pages/dashboard', $data);
+        }
     }
 }

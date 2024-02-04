@@ -14,27 +14,48 @@
                         <th>No</th>
                         <th>User</th>
                         <th>Pesanan</th>
+                        <th>Jenis Pesanan</th>
                         <th>Ulasan</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $nomor = 1; ?>
                     <?php foreach ($ulasans as $key => $ulasan) : ?>
-                        <tr>
-                            <td><?= $key + 1; ?></td>
-                            <td>
-                                <?php foreach ($users as $bio) : ?>
-                                    <?php if ($ulasan['user_id'] == $bio['id_user']) : ?>
-                                        <?= $bio['username'] ?>
-                                    <?php endif ?>
-                                <?php endforeach ?>
-                            </td>
-                            <td><?= $ulasan['pemesanan_id'] ?? 'N/A'; ?></td>
-                            <td><?= $ulasan['ulasan'] ?? 'N/A'; ?></td>
-                            <td>
-                                <a href="<?= base_url('ulasan/delete/' . $ulasan['id_ulasan']); ?>" class="btn btn-danger btn-sm rounded-pill btn-icon"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php if ($ulasan['user_id'] == session('user_id_biodata')) : ?>
+                            <tr>
+                                <td><?= $nomor++; ?></td>
+                                <td>
+                                    <?php foreach ($users as $bio) : ?>
+                                        <?php if ($ulasan['user_id'] == $bio['id_user']) : ?>
+                                            <?= $bio['username'] ?>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($pesanans as $pes) : ?>
+                                        <?php foreach ($jasa as $j) : ?>
+                                            <?php if ($pes['id_pemesanan'] == $ulasan['pemesanan_id']) : ?>
+                                                <?php if ($j['id_jasa'] == $pes['jasa_id']) : ?>
+                                                    <?= $j['nama_jasa'] ?>
+                                                <?php endif ?>
+                                            <?php endif ?>
+                                        <?php endforeach ?>
+                                    <?php endforeach ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($pesanans as $pes) : ?>
+                                        <?php foreach ($jasa as $j) : ?>
+                                            <?php if ($pes['id_pemesanan'] == $ulasan['pemesanan_id']) : ?>
+                                                <?php if ($j['id_jasa'] == $pes['jasa_id']) : ?>
+                                                    <?= $j['jenis_jasa'] ?>
+                                                <?php endif ?>
+                                            <?php endif ?>
+                                        <?php endforeach ?>
+                                    <?php endforeach ?>
+                                </td>
+                                <td><?= $ulasan['ulasan'] ?? 'N/A'; ?></td>
+                            </tr>
+                        <?php endif; ?>
                     <?php endforeach; ?>
 
                 </tbody>

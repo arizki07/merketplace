@@ -10,7 +10,7 @@
                 <p class="text-center">
                     Silahkan pilih produk jasa yang anda minati, lalu pesan dan lakukan pembayaran.
                 </p>
-                <div class="d-flex align-items-center justify-content-center flex-wrap gap-2 pb-5 pt-3 mb-0 mb-md-4">
+                <!-- <div class="d-flex align-items-center justify-content-center flex-wrap gap-2 pb-5 pt-3 mb-0 mb-md-4">
                     <label class="switch switch-primary ms-3 ms-sm-0 mt-2">
                         <span class="switch-label">Videografi</span>
                         <input type="checkbox" class="switch-input price-duration-toggler" checked />
@@ -20,54 +20,56 @@
                         </span>
                         <span class="switch-label">Fotografi</span>
                     </label>
-                </div>
+                </div> -->
 
                 <div class="row mx-0 gy-3 px-lg-5">
 
                     <!-- Pro -->
                     <?php foreach ($jasaModel as $item) : ?>
-                        <div class="col-lg-6 mb-md-0 mb-4 mx-auto">
-                            <div class="card border-primary border shadow-none">
-                                <div class="card-body position-relative">
-                                    <div class="position-absolute end-0 me-4 top-0 mt-4">
-                                        <span class="badge bg-label-primary"><?= $item['jenis_jasa'] ?></span>
-                                    </div>
-                                    <div class="my-3 pt-2 text-center">
-                                        <img src="<?= base_url('assets/upload/testi/' . $item['testimoni_foto']); ?>" alt="Standard Image" class="rounded-circle w-px-100 h-px-100" />
-                                    </div>
-                                    <h3 class="card-title fw-semibold text-center text-capitalize mb-1"><?= $item['nama_jasa'] ?></h3>
-                                    <p class="text-center"><?= $item['lokasi'] ?></p>
-                                    <div class="text-center">
-                                        <div class="d-flex justify-content-center">
-                                            <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">Rp</sup>
-                                            <h1 class="price-toggle price-yearly fw-semibold display-4 text-primary mb-0"><?= number_format($item['harga_jasa'], 0, ',', '.'); ?></h1>
-                                            <sub class="h6 text-muted pricing-duration mt-auto mb-2 fw-normal">/<?= $item['jumlah_foto'] ?> Foto</sub>
+                        <?php if ($item['user_id'] == session('user_id_biodata')) : ?>
+                            <div class="col-lg-6 mb-md-0 mb-4 mx-auto">
+                                <div class="card border-primary border shadow-none">
+                                    <div class="card-body position-relative">
+                                        <div class="position-absolute end-0 me-4 top-0 mt-4">
+                                            <span class="badge bg-label-primary"><?= $item['jenis_jasa'] ?></span>
                                         </div>
-                                        <small class="price-yearly price-yearly-toggle text-muted">Pemilik Jasa :
-                                            <?php foreach ($biodata as $key => $bio) : ?>
-                                                <?php if ($bio['id_biodata'] == $item['biodata_id']) : ?>
-                                                    <?= $bio['nama_lengkap'] ?>
-                                                <?php endif ?>
-                                            <?php endforeach ?>
-                                        </small>
+                                        <div class="my-3 pt-2 text-center">
+                                            <img src="<?= base_url('assets/upload/testi/' . $item['testimoni_foto']); ?>" alt="Standard Image" class="rounded-circle w-px-100 h-px-100" />
+                                        </div>
+                                        <h3 class="card-title fw-semibold text-center text-capitalize mb-1"><?= $item['nama_jasa'] ?></h3>
+                                        <p class="text-center"><?= $item['lokasi'] ?></p>
+                                        <div class="text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <sup class="h6 pricing-currency mt-3 mb-0 me-1 text-primary">Rp</sup>
+                                                <h1 class="price-toggle price-yearly fw-semibold display-4 text-primary mb-0"><?= number_format($item['harga_jasa'], 0, ',', '.'); ?></h1>
+                                                <sub class="h6 text-muted pricing-duration mt-auto mb-2 fw-normal">/<?= $item['jumlah_foto'] ?> Foto</sub>
+                                            </div>
+                                            <small class="price-yearly price-yearly-toggle text-muted">Pemilik Jasa :
+                                                <?php foreach ($biodata as $key => $bio) : ?>
+                                                    <?php if ($bio['id_biodata'] == $item['biodata_id']) : ?>
+                                                        <?= $bio['nama_lengkap'] ?>
+                                                    <?php endif ?>
+                                                <?php endforeach ?>
+                                            </small>
+                                        </div>
+
+                                        <ul class="ps-3 my-4 pt-2">
+                                            <li class="mb-2">Email :
+                                                <?php foreach ($user as $key => $u) : ?>
+                                                    <?php if ($u['id_user'] == $item['user_id']) : ?>
+                                                        <?= $u['email'] ?>
+                                                    <?php endif ?>
+                                                <?php endforeach ?>
+                                            </li>
+                                            <li class="mb-2">Whatsapp : <?= $item['no_telepon'] ?></li>
+                                            <li class="mb-0">Jenis Jasa : <?= $item['jenis_jasa'] ?></li>
+                                        </ul>
+
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#pesan-<?= $item['id_jasa'] ?>" class="btn btn-primary w-100"><i class="ti ti-shopping-cart ti-xs me-1"></i>Pesan Sekarang</a>
                                     </div>
-
-                                    <ul class="ps-3 my-4 pt-2">
-                                        <li class="mb-2">Email :
-                                            <?php foreach ($user as $key => $u) : ?>
-                                                <?php if ($u['id_user'] == $item['user_id']) : ?>
-                                                    <?= $u['email'] ?>
-                                                <?php endif ?>
-                                            <?php endforeach ?>
-                                        </li>
-                                        <li class="mb-2">Whatsapp : <?= $item['no_telepon'] ?></li>
-                                        <li class="mb-0">Jenis Jasa : <?= $item['jenis_jasa'] ?></li>
-                                    </ul>
-
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#pesan-<?= $item['id_jasa'] ?>" class="btn btn-primary w-100"><i class="ti ti-shopping-cart ti-xs me-1"></i>Pesan Sekarang</a>
                                 </div>
                             </div>
-                        </div>
+                        <?php endif ?>
                     <?php endforeach ?>
 
                 </div>

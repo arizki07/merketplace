@@ -38,7 +38,7 @@ class RegisterController extends BaseController
                 'email' => $this->request->getPost('email'),
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                 'role' => $this->request->getPost('role'),
-                'status' => 'Active'
+                'status' => '0'
             ];
 
             $existingEmail = $model->where('email', $data['email'])->first();

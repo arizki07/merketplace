@@ -28,7 +28,14 @@ class TransaksiController extends BaseController
             'users' => $data['users'],
             'pesanans' => $data['pesanans'],
         ];
-        return view('pages/admin/transaksi/index', $data);
+
+        if (session('role') == 'Admin') {
+            return view('pages/admin/transaksi/index', $data);
+        } elseif (session('role') == 'Penyedia') {
+            return view('pages/penyedia/transaksi/index', $data);
+        } else {
+            return view('pages/pengguna/transaksi/index', $data);
+        }
     }
 
     public function delete($id)
