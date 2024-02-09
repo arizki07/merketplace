@@ -76,9 +76,6 @@ class AuthController extends BaseController
                         return redirect()->to('login')->with('error', 'User tidak ditemukan.');
                     }
                     break;
-                case 'Pengguna':
-                    return redirect()->to('pengguna/dashboard');
-                    break;
                 default:
                     return redirect()->to('/');
             }
@@ -87,6 +84,44 @@ class AuthController extends BaseController
         $session = \Config\Services::session();
         $session->setFlashdata('error', 'Username dan Password Salah');
         return view('auth/login');
+    }
+
+    public function login_pengguna()
+    {
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $id = $this->request->getPost('id_jasa');
+
+        $userModel = new UserModel();
+        $user = $userModel->getUserByEmail($email);
+
+        if (empty($user)) {
+            $session = \Config\Services::session();
+            $session->setFlashdata('error-dua', 'Email tidak terdaftar!');
+            return redirect()->to('shop/fotografi/detail/' . $id);
+        }
+
+        if ($user['role'] === 'Pengguna') {
+            if (password_verify($password, $user['password'])) {
+
+                $session = \Config\Services::session();
+                $session->set('auth', true);
+                $session->set('email', $user['email']);
+                $session->set('role', $user['role']);
+                $session->set('username', $user['username']);
+
+                $session->setFlashdata('success-dua', 'Berhasil!. Status anda sekarang sudah login.');
+                return redirect()->to('shop/fotografi/detail/' . $id);
+            }
+
+            $session = \Config\Services::session();
+            $session->setFlashdata('error-dua', 'Email atau Password Salah!');
+            return redirect()->to('shop/fotografi/detail/' . $id);
+        } else {
+            $session = \Config\Services::session();
+            $session->setFlashdata('error-dua', 'Login gagal. Email terdaftar di role lain.');
+            return redirect()->to('shop/fotografi/detail/' . $id);
+        }
     }
 
 
@@ -150,6 +185,6 @@ class AuthController extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/');
+        return redirect()->to('/')->with('success', 'Anda berhasil logout');
     }
 }

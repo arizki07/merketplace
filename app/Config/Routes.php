@@ -14,6 +14,10 @@ $routes->get('login/google-client/tURkWTpdyF68y85gV753fCcT7Kf37j', 'AuthControll
 $routes->get('google/callback', 'AuthController::googleCallback');
 $routes->get('logout', 'AuthController::logout');
 
+// LOGIN LANDING
+$routes->get('login-pengguna', 'AuthController::index');
+$routes->post('login-pengguna', 'AuthController::login_pengguna');
+
 //register
 $routes->get('register', 'RegisterController::register');
 $routes->post('register', 'RegisterController::register');
@@ -25,6 +29,18 @@ $routes->get('forgot-password', 'ResetPasswordController::forgotPassword');
 $routes->post('forgot-password', 'ResetPasswordController::processForgotPassword');
 $routes->get('reset-password/(:any)', 'ResetPasswordController::showResetForm/$1', ['as' => 'password.reset']);
 $routes->post('reset-password', 'ResetPasswordController::reset', ['as' => 'password.update']);
+
+// Shop
+$routes->group('shop', function ($routes) {
+    $routes->get('fotografi', 'ShopController::fotografi');
+    $routes->get('videografi', 'ShopController::videografi');
+    $routes->get('product-all', 'ShopController::all');
+
+    $routes->get('mybiodata', 'ShopController::biodata');
+
+    $routes->get('fotografi/detail/(:num)', 'ShopController::detailFotografi/$1');
+});
+
 
 
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {

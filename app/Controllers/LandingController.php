@@ -10,7 +10,8 @@ class LandingController extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Jasa Fotografi'
+            'title' => 'Jasa Fotografi',
+            'active' => 'home'
         ];
         return view('pages/landing-pages', $data);
     }

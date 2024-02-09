@@ -38,7 +38,8 @@ class RegisterController extends BaseController
                 'email' => $this->request->getPost('email'),
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                 'role' => $this->request->getPost('role'),
-                'status' => '0'
+                // 'status' => '0'
+                'status' => ($this->request->getPost('role') === 'Pengguna') ? '1' : '0',
             ];
 
             $existingEmail = $model->where('email', $data['email'])->first();
@@ -84,7 +85,12 @@ class RegisterController extends BaseController
 
                 $session->removeTempdata('registration_data');
 
-                return redirect()->to('login')->with('success', 'Registrasi berhasil. Silakan login.');
+                // return redirect()->to('login')->with('success', 'Registrasi berhasil. Silakan login.');
+                if ($registrationData['role'] == 'Penyedia') {
+                    return redirect()->to('login')->with('success', 'Registrasi berhasil. Silakan login sebagai penyedia.');
+                } else {
+                    return redirect()->to('/')->with('success', 'Registrasi berhasil. Silakan login sebagai pengguna.');
+                }
             } else {
                 return redirect()->back()->withInput()->with('error', 'Kode OTP tidak valid. Silakan coba lagi.');
             }
@@ -125,12 +131,12 @@ class RegisterController extends BaseController
             $mail->Port = 587;
 
             // Recipients
-            $mail->setFrom('ptpintex6@gmail.com', 'WEB-CRAFSER');
+            $mail->setFrom('ptpintex6@gmail.com', 'Market-Shoot');
             $mail->addAddress($email);
 
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Kode OTP Registrasi WEB-CRAFSER';
+            $mail->Subject = 'OTP Registrasi Dig-Market';
 
             $emailMessage = '<html>';
             $emailMessage .= '<head>';
@@ -146,7 +152,7 @@ class RegisterController extends BaseController
             $emailMessage .= '</head>';
             $emailMessage .= '<body>';
             $emailMessage .= '<div class="container">';
-            $emailMessage .= '<img src="https://sbmptmu.id/wp-content/uploads/2022/04/logo-umc-1009x1024-Reza-M-768x779.png" alt="Logo" class="logo" style="width: 50px; height: 50px;">';
+            $emailMessage .= '<img src="https://songsofsyx.com/wiki/images/9/9e/Lock_icon.png" alt="Logo" class="logo" style="width: 50px; height: 50px;">';
             $emailMessage .= '<h1>Kode OTP</h1>';
             $emailMessage .= '<table>';
             $emailMessage .= '<tr><td style="background-color: #eee;"><strong>' . $otp . '</strong></td></tr>';
