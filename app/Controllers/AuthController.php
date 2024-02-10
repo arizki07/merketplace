@@ -157,16 +157,16 @@ class AuthController extends BaseController
                 $session->set('status', $userData['status']);
 
                 $session->setFlashdata('success-dua', 'Berhasil!. Status anda sekarang sudah login.');
-                return redirect()->to('shop/fotografi/detail/' . $id);
+                return redirect()->to('shop/product/detail/' . $id);
             }
 
             $session = \Config\Services::session();
             $session->setFlashdata('error-dua', 'Email atau Password Salah!');
-            return redirect()->to('shop/fotografi/detail/' . $id);
+            return redirect()->to('shop/product/detail/' . $id);
         } else {
             $session = \Config\Services::session();
             $session->setFlashdata('error-dua', 'Login gagal. Email terdaftar di role lain.');
-            return redirect()->to('shop/fotografi/detail/' . $id);
+            return redirect()->to('shop/product/detail/' . $id);
         }
     }
 

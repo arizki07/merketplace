@@ -240,7 +240,7 @@ class PaymentGatewayController extends BaseController
             'snapToken' => $snapToken,
             'jasaModel' => $jasaModel,
             'title' => 'Payment',
-            'active' => 'detail',
+            'active' => 'payment',
         ];
 
         return view('pages/pengguna/payment', $data);

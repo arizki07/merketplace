@@ -49,6 +49,7 @@ class Filters extends BaseConfig
                 'shop/fotografi/detail/(\d+)',
                 'login-pengguna',
                 'shop/success',
+                'shop/contact',
             ]],
             // 'honeypot',
             // 'csrf',
