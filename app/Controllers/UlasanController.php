@@ -44,6 +44,27 @@ class UlasanController extends BaseController
         }
     }
 
+    public function ulasan()
+    {
+        $ulasanModel = new UlasanModel();
+        $data = [
+            'user_id' => $this->request->getpost('user_id'),
+            'pemesanan_id' => $this->request->getpost('pemesanan_id'),
+            'ulasan' => $this->request->getpost('ulasan'),
+        ];
+
+        $check = $ulasanModel->where('user_id', $data['user_id'])->where('pemesanan_id', $data['pemesanan_id'])->first();
+
+        if ($check) {
+            return redirect()->to('shop/cart')->with('error-dua', 'Anda sudah mengisi ulasan ini!');
+        }
+
+        $ulasanModel->insert($data);
+
+        session()->setFlashdata('success-dua', 'Ulasan berhasil ditambahkan!');
+        return redirect()->to('shop/cart');
+    }
+
     public function delete($id)
     {
         // Proses menghapus ulasan

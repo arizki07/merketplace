@@ -9,6 +9,7 @@ use App\Models\BiodataModel;
 use App\Models\UserModel;
 use App\Models\TransaksiModel;
 use App\Models\PesananModel;
+use App\Models\UlasanModel;
 
 class ShopController extends BaseController
 {
@@ -91,6 +92,9 @@ class ShopController extends BaseController
         $pesananModel = new PesananModel();
         $pesanan = $pesananModel->findAll();
 
+        $ulasanModel = new UlasanModel();
+        $ulasan = $ulasanModel->findAll();
+
         $data = [
             'title' => 'Hystori',
             'active' => 'cart',
@@ -99,6 +103,7 @@ class ShopController extends BaseController
             'user'  => $user,
             'pesanan'  => $pesanan,
             'transaksi'  => $transaksi,
+            'ulasan'  => $ulasan,
         ];
 
         return view('pages/pengguna/cart', $data);

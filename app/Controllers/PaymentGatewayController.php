@@ -220,7 +220,7 @@ class PaymentGatewayController extends BaseController
             'alamat_pemesanan' => $this->request->getPost('alamat_pemesanan'),
             'tanggal_pelaksanaan' => $this->request->getPost('tanggal_pelaksanaan'),
             'no_telepon' => $biodataData['no_telepon'] ?? $this->request->getPost('no_telepon'),
-            'created_at' => date('Y-m-d H:i:s'),
+            // 'created_at' => date('Y-m-d H:i:s'),
         ];
         $pesananModel->insert($pesananData);
 
@@ -232,7 +232,7 @@ class PaymentGatewayController extends BaseController
             'jumlah_transaksi' => $jasaModel['harga_jasa'],
             'metode_pembayaran' => 'Midtrans',
             'status_pembayaran' => 'Pending',
-            'created_at' => date('Y-m-d H:i:s'),
+            // 'created_at' => date('Y-m-d H:i:s'),
         ];
         $transaksiModel->insert($transaksiData);
 

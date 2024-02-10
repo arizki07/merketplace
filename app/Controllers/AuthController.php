@@ -42,7 +42,7 @@ class AuthController extends BaseController
             $session = \Config\Services::session();
             $session->set('auth', true);
             $session->set('email', $selectedUser['email']);
-            $session->set('id_user', $selectedUser['id_user']);
+            // $session->set('id_user', $selectedUser['id_user']);
             $session->set('role', $selectedUser['role']);
             $session->set('username', $admin ? $selectedUser['username'] : $selectedUser['username']);
 

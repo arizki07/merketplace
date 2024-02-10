@@ -22,6 +22,7 @@
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
+                <?= $this->include('components/alerts') ?>
                 <table class="table">
                     <thead>
                         <tr>
@@ -31,6 +32,7 @@
                             <th scope="col">Metode</th>
                             <th scope="col">Status</th>
                             <th scope="col">Jumlah</th>
+                            <th scope="col" class="text-center">Ulasan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +61,9 @@
                                     </td>
                                     <td>
                                         <h5><?= 'Rp ' . number_format($item['jumlah_transaksi'], 0, ',', '.'); ?></h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" data-toggle="modal" data-target="#ulasan-<?= $item['id_transaksi'] ?>" class="text-warning" style="font-size: 20px;"><span class="ti-comment-alt"></span></a>
                                     </td>
                                 </tr>
                         <?php endif;
@@ -90,5 +95,35 @@
     </div>
 </section>
 <!--================End Cart Area =================-->
+
+<?php $this->section('scripts') ?>
+<?php foreach ($transaksi as $item) : ?>
+    <div class="modal fade" id="ulasan-<?= $item['id_transaksi'] ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Form Ulasan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url('shop/ulasan') ?>" method="POST">
+                        <div class="mb-3">
+                            <input type="hidden" value="<?= session('user_id_biodata') ?>" name="user_id" required>
+                            <input type="hidden" value="<?= $item['pemesanan_id'] ?>" name="pemesanan_id" required>
+                            <textarea type="text" rows="4" class="form-control" placeholder="Ulasan Anda" name="ulasan" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn primary-btn" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn primary-btn">Kirim Ulasan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+<?php $this->endSection() ?>
 
 <?= $this->endSection(); ?>

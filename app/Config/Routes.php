@@ -34,6 +34,7 @@ $routes->post('reset-password', 'ResetPasswordController::reset', ['as' => 'pass
 $routes->group('shop', function ($routes) {
     $routes->get('contact', 'ShopController::contact');
     $routes->get('cart', 'ShopController::cart');
+    $routes->post('ulasan', 'UlasanController::ulasan');
     $routes->get('fotografi', 'ShopController::fotografi');
     $routes->get('videografi', 'ShopController::videografi');
     // $routes->get('product-all', 'ShopController::all');
@@ -103,8 +104,8 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     //ulasan
     $routes->get('ulasan', 'UlasanController::index');
-    $routes->get('ulasan/edit/(:num)', 'UlasanController::edit/$1');
-    $routes->post('ulasan/update/(:num)', 'UlasanController::update/$1');
+    // $routes->get('ulasan/edit/(:num)', 'UlasanController::edit/$1');
+    // $routes->post('ulasan/update/(:num)', 'UlasanController::update/$1');
     $routes->get('ulasan/delete/(:num)', 'UlasanController::delete/$1');
 
     //GOOGLE & OTP
