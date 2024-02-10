@@ -85,16 +85,16 @@ class AuthController extends BaseController
 
                     // if (!empty($userData)) {
                     $biodataData = $biodataModel->getBiodataByUserId($userData['id_user']);
-                    $session->set('biodata_id', $biodataData['id_biodata'] ?? 'Belum ada');
+                    $session->set('biodata_id', $biodataData['id_biodata'] ?? null);
                     // $session->set('user_id_biodata', $userData['id_user']);
                     $session->set('role', $userData['role']);
                     $session->set('user_id_biodata', $userData['id_user']);
-                    $session->set('nama', $userData['username'] ?? 'Belum ada');
-                    $session->set('no_telepon', $biodataData['no_telepon'] ?? 'Belum ada');
+                    $session->set('nama', $userData['username'] ?? null);
+                    $session->set('no_telepon', $biodataData['no_telepon'] ?? null);
                     $session->set('tanggal_lahir', $biodataData['tanggal_lahir'] ?? date('Y-m-d'));
-                    $session->set('alamat', $biodataData['alamat'] ?? 'Belum ada');
-                    $session->set('nomor_ktp', $biodataData['nomor_ktp'] ?? 'Belum ada');
-                    $session->set('foto_ktp', $biodataData['foto_ktp'] ?? 'Belum ada.png');
+                    $session->set('alamat', $biodataData['alamat'] ?? null);
+                    $session->set('nomor_ktp', $biodataData['nomor_ktp'] ?? null);
+                    $session->set('foto_ktp', $biodataData['foto_ktp'] ?? null);
                     $session->set('email', $userData['email']);
                     $session->set('status', $userData['status']);
 
@@ -145,14 +145,14 @@ class AuthController extends BaseController
 
                 // if (!empty($userData)) {
                 $biodataData = $biodataModel->getBiodataByUserId($userData['id_user']);
-                $session->set('biodata_id', $biodataData['id_biodata'] ?? 'Belum ada');
-                $session->set('user_id_biodata', $userData['id_user'] ?? 'Belum ada');
-                $session->set('nama', $userData['username'] ?? 'Belum ada');
-                $session->set('no_telepon', $biodataData['no_telepon'] ?? 'Belum ada');
+                $session->set('biodata_id', $biodataData['id_biodata'] ?? null);
+                $session->set('user_id_biodata', $userData['id_user'] ?? null);
+                $session->set('nama', $userData['username'] ?? null);
+                $session->set('no_telepon', $biodataData['no_telepon'] ?? null);
                 $session->set('tanggal_lahir', $biodataData['tanggal_lahir'] ?? date('Y-m-d'));
-                $session->set('alamat', $biodataData['alamat'] ?? 'Belum ada');
-                $session->set('nomor_ktp', $biodataData['nomor_ktp'] ?? 'Belum ada');
-                $session->set('foto_ktp', $biodataData['foto_ktp'] ?? 'Belum ada.png');
+                $session->set('alamat', $biodataData['alamat'] ?? null);
+                $session->set('nomor_ktp', $biodataData['nomor_ktp'] ?? null);
+                $session->set('foto_ktp', $biodataData['foto_ktp'] ?? null);
                 // $session->set('email', $userData['email']);
                 $session->set('status', $userData['status']);
 

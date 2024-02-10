@@ -109,7 +109,7 @@
         </div>
         <div class="cupon_area">
             <div class="check_title">
-                <h2>Isi formulir pemesanan berikut dengan lengkap</h2>
+                <h2>Semua formulir wajib diisi. Pastikan informasi formulir anda sudah benar</h2>
             </div>
         </div>
         <form class="row contact_form" action="<?= base_url('shop/payment/' . $jasa['id_jasa'] . '/' .  $jasa['nama_jasa'] . '/' . $jasa['jenis_jasa']) ?>" method="post" novalidate="novalidate" enctype="multipart/form-data">
@@ -118,36 +118,36 @@
                     <div class="col-lg-8">
                         <h3>Billing Details</h3>
                         <div class="col-md-12 form-group p_star">
-                            <label class="mb-2">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="first" name="nama_lengkap" placeholder="Nama Lengkap Anda" value="<?= old('nama_lengkap', session('username') ?? 'N/A') ?>" required>
+                            <label class="mb-2">Nama Lengkap<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="first" name="nama_lengkap" placeholder="Nama Lengkap Anda" value="<?= old('nama_lengkap', session('username')) ?>" required>
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <label class="mb-2">Nomor Telepon</label>
-                            <input type="text" class="form-control" id="first" name="no_telepon" value="<?= old('no_telepon', session('no_telepon') ?? 'N/A') ?>" placeholder="Nomor Telepon" required>
+                            <label class="mb-2">Nomor Telepon<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="first" name="no_telepon" value="<?= old('no_telepon', session('no_telepon')) ?>" placeholder="Nomor Telepon Belum Ada" required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label class="mb-2">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="company" value="<?= old('tanggal_lahir', session('tanggal_lahir') ?? 'N/A') ?>" name="tanggal_lahir" required>
+                            <label class="mb-2">Tanggal Lahir<span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="company" value="<?= old('tanggal_lahir', session('tanggal_lahir')) ?>" name="tanggal_lahir" required>
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <label class="mb-2">Nomor KTP</label>
-                            <input type="text" class="form-control" id="first" value="<?= old('nomor_ktp', session('nomor_ktp') ?? 'N/A') ?>" name="nomor_ktp" placeholder="Nomor KTP" required>
+                            <label class="mb-2">Nomor KTP<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="first" value="<?= old('nomor_ktp', session('nomor_ktp')) ?>" name="nomor_ktp" placeholder="Nomor KTP Belum Ada" required>
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <label class="mb-2">Alamat Tinggal</label>
-                            <textarea class="form-control" name="alamat" id="message" rows="1" placeholder="Alamat lengkap anda"><?= old('alamat', session('alamat') ?? 'N/A') ?></textarea>
+                            <label class="mb-2">Alamat Tinggal<span class="text-danger">*</span></label>
+                            <textarea class="form-control" name="alamat" id="message" rows="1" placeholder="Alamat lengkap Belum Ada"><?= old('alamat', session('alamat')) ?></textarea>
                         </div>
                         <div class="col-md-12 mt-4 form-group p_star">
-                            <label class="mb-2">Foto KTP</label>
+                            <label class="mb-2">Foto KTP<span class="text-danger">*</span></label>
                             <input type="file" id="first" value="<?= base_url('assets/upload/ktp/' . session('foto_ktp')) ?>" name="foto_ktp" required>
                         </div>
                         <h3 class="mt-5 mb-4">Detail Pemesanan</h3>
                         <div class="col-md-12 form-group">
-                            <label class="mb-2">Tanggal Pelaksanaan</label>
+                            <label class="mb-2">Tanggal Pelaksanaan<span class="text-danger">*</span></label>
                             <input type="date" class="form-control" id="company" name="tanggal_pelaksanaan" value="<?= old('tanggal_pelaksanaan') ?>" required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label class="mb-2">Alamat Pelaksanaan</label>
+                            <label class="mb-2">Alamat Pelaksanaan<span class="text-danger">*</span></label>
                             <textarea class="form-control" name="alamat_pemesanan" id="message" rows="1" placeholder="Alamat Pelaksanaan Acara"><?= old('alamat_pemesanan') ?></textarea>
                         </div>
                     </div>
