@@ -36,9 +36,13 @@ $routes->group('shop', function ($routes) {
     $routes->get('videografi', 'ShopController::videografi');
     $routes->get('product-all', 'ShopController::all');
 
-    $routes->get('mybiodata', 'ShopController::biodata');
+    // $routes->get('mybiodata', 'ShopController::biodata');
+    $routes->match(['get', 'post'], 'payment/(:num)/(:any)/(:any)', 'PaymentGatewayController::index_pengguna/$1/$2/$3');
+    $routes->match(['get', 'post'], 'payment/update-status/(:num)', 'PaymentGatewayController::payment_pengguna/$1');
 
     $routes->get('fotografi/detail/(:num)', 'ShopController::detailFotografi/$1');
+    // $routes->get('success', 'PaymentGatewayController::payment_success');
+    $routes->get('payment/berhasil', 'PaymentGatewayController::payment_berhasil');
 });
 
 

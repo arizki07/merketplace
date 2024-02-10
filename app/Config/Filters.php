@@ -48,7 +48,7 @@ class Filters extends BaseConfig
                 'shop/product-all',
                 'shop/fotografi/detail/(\d+)',
                 'login-pengguna',
-                'mybiodata',
+                'shop/success',
             ]],
             // 'honeypot',
             // 'csrf',

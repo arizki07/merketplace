@@ -28,7 +28,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <?php if (session('role') == 'Pengguna') : ?>
-                        <li class="nav-item"><a class="nav-link text-success">Logged</a></li>
+                        <li class="nav-item"><a class="nav-link text-success"><span class="ti-check-box mx-1"></span>Logged</a></li>
                     <?php else : ?>
                         <li class="nav-item"><a class="nav-link text-danger">Not Logged</a></li>
                     <?php endif ?>
@@ -36,12 +36,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php if (session('role') == 'Pengguna') : ?>
                         <li class="nav-item"><a href="<?= base_url('logout') ?>" class="cart"><span class="ti-power-off"></span></a></li>
+                        <li class="nav-item"><a href="#" class="cart"><span class="ti-shopping-cart"></span></a></li>
                     <?php else : ?>
                         <li class="nav-item"><a href="<?= base_url('login') ?>" class="cart"><span class="ti-user"></span></a></li>
                     <?php endif ?>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

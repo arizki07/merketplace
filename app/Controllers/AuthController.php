@@ -42,6 +42,7 @@ class AuthController extends BaseController
             $session = \Config\Services::session();
             $session->set('auth', true);
             $session->set('email', $selectedUser['email']);
+            $session->set('id_user', $selectedUser['id_user']);
             $session->set('role', $selectedUser['role']);
             $session->set('username', $admin ? $selectedUser['username'] : $selectedUser['username']);
 
@@ -76,6 +77,32 @@ class AuthController extends BaseController
                         return redirect()->to('login')->with('error', 'User tidak ditemukan.');
                     }
                     break;
+                case 'Pengguna':
+                    $userModel = new UserModel();
+                    $biodataModel = new BiodataModel();
+
+                    $userData = $userModel->getUserById($user['id_user']);
+
+                    // if (!empty($userData)) {
+                    $biodataData = $biodataModel->getBiodataByUserId($userData['id_user']);
+                    $session->set('biodata_id', $biodataData['id_biodata'] ?? 'Belum ada');
+                    // $session->set('user_id_biodata', $userData['id_user']);
+                    $session->set('role', $userData['role']);
+                    $session->set('user_id_biodata', $userData['id_user']);
+                    $session->set('nama', $userData['username'] ?? 'Belum ada');
+                    $session->set('no_telepon', $biodataData['no_telepon'] ?? 'Belum ada');
+                    $session->set('tanggal_lahir', $biodataData['tanggal_lahir'] ?? date('Y-m-d'));
+                    $session->set('alamat', $biodataData['alamat'] ?? 'Belum ada');
+                    $session->set('nomor_ktp', $biodataData['nomor_ktp'] ?? 'Belum ada');
+                    $session->set('foto_ktp', $biodataData['foto_ktp'] ?? 'Belum ada.png');
+                    $session->set('email', $userData['email']);
+                    $session->set('status', $userData['status']);
+
+                    return redirect()->to('/');
+                    // } else {
+                    //     return redirect()->to('login')->with('error', 'User tidak ditemukan.');
+                    // }
+                    break;
                 default:
                     return redirect()->to('/');
             }
@@ -106,9 +133,28 @@ class AuthController extends BaseController
 
                 $session = \Config\Services::session();
                 $session->set('auth', true);
+                $session->set('id_user', $user['id_user']);
                 $session->set('email', $user['email']);
                 $session->set('role', $user['role']);
                 $session->set('username', $user['username']);
+
+                $userModel = new UserModel();
+                $biodataModel = new BiodataModel();
+
+                $userData = $userModel->getUserById($user['id_user']);
+
+                // if (!empty($userData)) {
+                $biodataData = $biodataModel->getBiodataByUserId($userData['id_user']);
+                $session->set('biodata_id', $biodataData['id_biodata'] ?? 'Belum ada');
+                $session->set('user_id_biodata', $userData['id_user'] ?? 'Belum ada');
+                $session->set('nama', $userData['username'] ?? 'Belum ada');
+                $session->set('no_telepon', $biodataData['no_telepon'] ?? 'Belum ada');
+                $session->set('tanggal_lahir', $biodataData['tanggal_lahir'] ?? date('Y-m-d'));
+                $session->set('alamat', $biodataData['alamat'] ?? 'Belum ada');
+                $session->set('nomor_ktp', $biodataData['nomor_ktp'] ?? 'Belum ada');
+                $session->set('foto_ktp', $biodataData['foto_ktp'] ?? 'Belum ada.png');
+                // $session->set('email', $userData['email']);
+                $session->set('status', $userData['status']);
 
                 $session->setFlashdata('success-dua', 'Berhasil!. Status anda sekarang sudah login.');
                 return redirect()->to('shop/fotografi/detail/' . $id);
