@@ -5,7 +5,6 @@
 <script src="<?= base_url() ?>landing/js/jquery.nice-select.min.js"></script>
 <script src="<?= base_url() ?>landing/js/jquery.sticky.js"></script>
 <script src="<?= base_url() ?>landing/js/nouislider.min.js"></script>
-<script src="<?= base_url() ?>landing/js/countdown.js"></script>
 <script src="<?= base_url() ?>landing/js/jquery.magnific-popup.min.js"></script>
 <script src="<?= base_url() ?>landing/js/owl.carousel.min.js"></script>
 <!--gmaps Js-->

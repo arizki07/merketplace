@@ -19,24 +19,24 @@ class AuthSeeder extends Seeder
             'foto_profil' => 'admin.jpg',
         ];
 
-        $userData = [
-            [
-                'username' => 'M Aldi Ajah',
-                'email' => 'ajaa0457@gmail.com',
-                'status' => '0',
-                'role' => 'Pengguna',
-                'password' => password_hash('Pengguna.123', PASSWORD_DEFAULT)
-            ],
-            [
-                'username' => 'Riko Simanjuntak',
-                'email' => 'mosyahicenter@gmail.com',
-                'status' => '0',
-                'role' => 'Penyedia',
-                'password' => password_hash('Penyedia.123', PASSWORD_DEFAULT)
-            ],
-        ];
+        // $userData = [
+        //     [
+        //         'username' => 'M Aldi Ajah',
+        //         'email' => 'ajaa0457@gmail.com',
+        //         'status' => '0',
+        //         'role' => 'Pengguna',
+        //         'password' => password_hash('Pengguna.123', PASSWORD_DEFAULT)
+        //     ],
+        //     [
+        //         'username' => 'Riko Simanjuntak',
+        //         'email' => 'mosyahicenter@gmail.com',
+        //         'status' => '0',
+        //         'role' => 'Penyedia',
+        //         'password' => password_hash('Penyedia.123', PASSWORD_DEFAULT)
+        //     ],
+        // ];
 
         $this->db->table('tb_admin')->insertBatch($adminData);
-        $this->db->table('tbl_user')->insertBatch($userData, true);
+        // $this->db->table('tbl_user')->insertBatch($userData, true);
     }
 }
