@@ -163,8 +163,6 @@ class DashboardController extends BaseController
                 'formattedTotalJumlahTransaksi' => $formattedTotalJumlahTransaksi,
             ];
             return view('pages/dashboard', $data);
-        } else {
-            return view('pages/dashboard', $data);
         }
     }
 }
