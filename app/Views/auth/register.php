@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Register Basic - Pages | Vuexy - Bootstrap Admin Template</title>
+    <title>Register | Market</title>
 
     <meta name="description" content="" />
 
@@ -69,7 +69,7 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z" fill="#7367F0" />
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bold ms-1">Vuexy</span>
+                                <span class="app-brand-text demo text-body fw-bold ms-1">Fotografi & Videografi</span>
                             </a>
                         </div>
                         <!-- /Logo -->

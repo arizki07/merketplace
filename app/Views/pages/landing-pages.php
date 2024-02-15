@@ -6,25 +6,25 @@
         <div class="row fullscreen align-items-center justify-content-start">
             <div class="col-lg-12">
                 <!-- <div class="active-banner-slider owl-carousel"> -->
-                    <!-- single-slide -->
-                    <div class="row align-items-center d-flex">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="banner-content">
-                                <h1>Layanan Fotografi <br>& Videografi</h1>
-                                <p>Temukan keindahan menangkap momen dengan layanan fotografi dan videografi profesional kami. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                <div class="add-bag d-flex align-items-center">
-                                    <a class="add-btn" href="" data-toggle="modal" data-target="#tatacara"><span class="ti-shopping-cart"></span></a>
-                                    <span class="add-text text-uppercase">Cara Pemesanan</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="banner-img">
-                                <img class="img-fluid" src="<?= base_url() ?>landing/img/banner/banner-img.png" alt="">
+                <!-- single-slide -->
+                <div class="row align-items-center d-flex">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="banner-content">
+                            <h1>Layanan Fotografi <br>& Videografi</h1>
+                            <p>Temukan keindahan menangkap momen dengan layanan fotografi dan videografi profesional kami. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            <div class="add-bag d-flex align-items-center">
+                                <a class="add-btn" href="" data-toggle="modal" data-target="#tatacara"><span class="ti-shopping-cart"></span></a>
+                                <span class="add-text text-uppercase">Cara Pemesanan</span>
                             </div>
                         </div>
                     </div>
-                    <!-- single-slide -->
+                    <div class="col-lg-7">
+                        <div class="banner-img">
+                            <!-- <img class="img-fluid" src="<?= base_url() ?>landing/img/banner/images.jpg" alt=""> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- single-slide -->
                 <!-- </div> -->
             </div>
         </div>
@@ -90,8 +90,8 @@
                     <div class="col-lg-8 col-md-8">
                         <div class="single-deal">
                             <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/c1.jpg" alt="">
-                            <a href="<?= base_url() ?>landing/img/category/c1.jpg" class="img-pop-up" target="_blank">
+                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/foto2.jpg" alt="">
+                            <a href="<?= base_url() ?>landing/img/category/foto2.jpg" class="img-pop-up" target="_blank">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sneaker for Sports</h6>
                                 </div>
@@ -101,8 +101,8 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="single-deal">
                             <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/c2.jpg" alt="">
-                            <a href="<?= base_url() ?>landing/img/category/c2.jpg" class="img-pop-up" target="_blank">
+                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/foto1.jpg" alt="">
+                            <a href="<?= base_url() ?>landing/img/category/foto1.jpg" class="img-pop-up" target="_blank">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sneaker for Sports</h6>
                                 </div>
@@ -112,8 +112,8 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="single-deal">
                             <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/c3.jpg" alt="">
-                            <a href="<?= base_url() ?>landing/img/category/c3.jpg" class="img-pop-up" target="_blank">
+                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/foto5.jpg" alt="">
+                            <a href="<?= base_url() ?>landing/img/category/foto5.jpg" class="img-pop-up" target="_blank">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Product for Couple</h6>
                                 </div>
@@ -123,8 +123,8 @@
                     <div class="col-lg-8 col-md-8">
                         <div class="single-deal">
                             <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/c4.jpg" alt="">
-                            <a href="<?= base_url() ?>landing/img/category/c4.jpg" class="img-pop-up" target="_blank">
+                            <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/foto4.jpg" alt="">
+                            <a href="<?= base_url() ?>landing/img/category/foto4.jpg" class="img-pop-up" target="_blank">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sneaker for Sports</h6>
                                 </div>
@@ -136,7 +136,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="single-deal">
                     <div class="overlay"></div>
-                    <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/c5.jpg" alt="">
+                    <img class="img-fluid w-100" src="<?= base_url() ?>landing/img/category/foto3.jpg" alt="">
                     <a href="<?= base_url() ?>landing/img/category/c5.jpg" class="img-pop-up" target="_blank">
                         <div class="deal-details">
                             <h6 class="deal-title">Sneaker for Sports</h6>
