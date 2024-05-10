@@ -37,6 +37,7 @@ $routes->group('shop', function ($routes) {
     $routes->post('ulasan', 'UlasanController::ulasan');
     $routes->get('fotografi', 'ShopController::fotografi');
     $routes->get('videografi', 'ShopController::videografi');
+    $routes->get('wo', 'ShopController::wo');
     // $routes->get('product-all', 'ShopController::all');
 
     // $routes->get('mybiodata', 'ShopController::biodata');

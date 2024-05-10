@@ -17,6 +17,7 @@
                         <ul class="dropdown-menu">
                             <li class="nav-item <?= ($active == 'fotografi') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('shop/fotografi') ?>">Fotografi</a></li>
                             <li class="nav-item <?= ($active == 'videografi') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('shop/videografi') ?>">Videografi</a></li>
+                            <li class="nav-item <?= ($active == 'wo') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('shop/wo') ?>">Wedding Organizer</a></li>
                         </ul>
                     </li>
                     <!-- <li class="nav-item submenu dropdown">

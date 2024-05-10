@@ -41,6 +41,20 @@ class ShopController extends BaseController
         return view('pages/pengguna/videografi', $data);
     }
 
+    public function wo()
+    {
+        $jasaModel = new ListJasaModel();
+        $jasa = $jasaModel->findAll();
+
+        $data = [
+            'jasa' => $jasa,
+            'title' => 'Layanan Wedding Organizer',
+            'active' => 'wo'
+        ];
+
+        return view('pages/pengguna/wo', $data);
+    }
+
     public function detail($id)
     {
         $jasaModel = new ListJasaModel();

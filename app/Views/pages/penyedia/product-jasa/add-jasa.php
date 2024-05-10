@@ -28,6 +28,7 @@
                                 <option selected disabled>-- Pilih Jenis Jasa --</option>
                                 <option>Fotografi</option>
                                 <option>Videografi</option>
+                                <option>Wedding Organizer</option>
                             </select>
                         </div>
 
